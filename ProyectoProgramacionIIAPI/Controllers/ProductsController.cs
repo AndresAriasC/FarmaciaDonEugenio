@@ -45,14 +45,14 @@ namespace ProyectoProgramacionIIAPI.Controllers
         {
             if (id == 0)
             {
-                _logger.LogError($"Error al traer Estudiante con Id {id}");
+                _logger.LogError($"Error al traer el Producto con Id {id}");
                 return BadRequest();
             }
             var product = await _productRepo.Get(s => s.ProductId == id);
 
             if (product == null)
             {
-                _logger.LogError($"Error al traer Estudiante con Id {id}");
+                _logger.LogError($"Error al traer el Producto con Id {id}");
                 return NotFound();
             }
 

@@ -17,8 +17,8 @@ namespace ProyectoProgramacionIIAPI
 
             //CATEGORY
 
-            CreateMap<Category, CreateCategoryDto>();
-            CreateMap<CreateCategoryDto, Category>();
+            CreateMap<Category, CategoryDto>();
+            CreateMap<CategoryDto, Category>();
 
             CreateMap<Category, CreateCategoryDto>().ReverseMap();
             CreateMap<Category, UpdateCategoryDto>().ReverseMap();
