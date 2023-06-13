@@ -12,13 +12,16 @@ namespace ProyectoProgramacionIIAPI
             CreateMap<ProductDto, Product>();
 
             CreateMap<Product, CreateProductDto>().ReverseMap();
-            CreateMap<Product, CreateProductDto>().ReverseMap();
+            CreateMap<Product, UpdateProductDto>().ReverseMap();
+
+
+            //CATEGORY
 
             CreateMap<Category, CreateCategoryDto>();
             CreateMap<CreateCategoryDto, Category>();
 
             CreateMap<Category, CreateCategoryDto>().ReverseMap();
-            CreateMap<Category, CreateCategoryDto>().ReverseMap();
+            CreateMap<Category, UpdateCategoryDto>().ReverseMap();
         }
     }
 }

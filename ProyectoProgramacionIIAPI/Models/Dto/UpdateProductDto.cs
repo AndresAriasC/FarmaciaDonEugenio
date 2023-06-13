@@ -13,6 +13,6 @@ namespace ProyectoProgramacionIIAPI.Models.Dto
         public string ProductName { get; set; }
         [Required]
         public string ProductDescription { get; set; }
-        public int CategoryName { get; set; }
+        public int CategoryId { get; set; }
     }
 }
