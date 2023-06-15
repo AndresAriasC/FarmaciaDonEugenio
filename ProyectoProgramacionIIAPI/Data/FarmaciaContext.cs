@@ -13,6 +13,7 @@ namespace ProyectoProgramacionIIAPI.Data
 
         public DbSet<Product> Products { get; set; }
         public DbSet<Category> Categories { get; set; }
+        public DbSet<User> Users { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -34,6 +35,8 @@ namespace ProyectoProgramacionIIAPI.Data
                      CategoryName = "Dolor",
                      DateOfCreation = DateTime.Now,
                  });
+
+
 
         }
 
