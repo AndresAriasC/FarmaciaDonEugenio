@@ -36,6 +36,7 @@ namespace ProyectoFarmacia
         {
             Application.Exit();
         }
+        //Llama a todos lo productos de la API productos
         private async void GetAllProducts()
         {
             using (var client = new HttpClient())
@@ -54,22 +55,68 @@ namespace ProyectoFarmacia
                     }
                 }
             }
-
         }
+        //Llama a todos los usuarios de la API usuarios
+        private async void GetAllUsers()
+        {
+            using (var client = new HttpClient())
+            {
+                using (var response = await client.GetAsync("https://localhost:7159/api/Users"))
+                {
+                    if (response.IsSuccessStatusCode)
+                    {
+                        var users = await response.Content.ReadAsStringAsync();
+                        var result = JsonConvert.DeserializeObject<List<UserDto>>(users);
+                        cargaDatos.DataSource = result.ToList();
+                    }
+                    else
+                    {
+                        MessageBox.Show($"No se pudo obtener la lista de usuarios: {response.StatusCode}");
+                    }
+                }
+            }
+        }
+       
         private async void btnProductos_Click(object sender, EventArgs e)
         {
-            tituloUrl.Text = "/Productos";
-            GetAllProducts();
+            if (rbProductos.Checked == true)
+            {
+                tituloUrl.Text = "/Productos";
+                GetAllProducts();
+            }
         }
 
+        private void btnEmpleados_Click(object sender, EventArgs e)
+        {
+            if (rbProductos.Checked == true)
+            {
+                tituloUrl.Text = "/Empleados";
+                GetAllUsers();
+            }
+            GetAllUsers();
+        }
+        //se encarga de agregar dependiendo de que boton esta seleccionado
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-           
-            AddProduct addproduct = new AddProduct();
-            addproduct.ShowDialog();
+            if (rbProductos.Checked == true)
+            {
+                AddProduct addproduct = new AddProduct();
+                addproduct.ShowDialog();
+                GetAllProducts();
+            }
+            else if (rbEmpleados.Checked == true)
+            {
+                AddUser adduser = new AddUser();
+                adduser.ShowDialog();
+                GetAllUsers();
+            }
 
-            GetAllProducts();
         }
 
+        //se encarga de modificar dependiendo de que opcion este seleccionada
+        private void btnModificar_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
