@@ -29,9 +29,12 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Loading));
             carga = new System.Windows.Forms.Timer(components);
             progressBarInicio = new ProgressBar();
             label1 = new Label();
+            pictureBox1 = new PictureBox();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // carga
@@ -41,7 +44,7 @@
             // 
             // progressBarInicio
             // 
-            progressBarInicio.Location = new Point(74, 145);
+            progressBarInicio.Location = new Point(96, 143);
             progressBarInicio.Name = "progressBarInicio";
             progressBarInicio.Size = new Size(390, 42);
             progressBarInicio.TabIndex = 0;
@@ -50,22 +53,35 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            label1.Location = new Point(258, 190);
+            label1.Location = new Point(263, 203);
             label1.Name = "label1";
             label1.Size = new Size(41, 28);
             label1.TabIndex = 1;
             label1.Text = "0%";
             // 
+            // pictureBox1
+            // 
+            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
+            pictureBox1.Location = new Point(196, 23);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(187, 97);
+            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox1.TabIndex = 2;
+            pictureBox1.TabStop = false;
+            // 
             // Loading
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(559, 296);
+            ClientSize = new Size(559, 277);
+            Controls.Add(pictureBox1);
             Controls.Add(label1);
             Controls.Add(progressBarInicio);
+            FormBorderStyle = FormBorderStyle.None;
             Name = "Loading";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Loading";
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -75,5 +91,6 @@
         private System.Windows.Forms.Timer carga;
         private ProgressBar progressBarInicio;
         private Label label1;
+        private PictureBox pictureBox1;
     }
 }

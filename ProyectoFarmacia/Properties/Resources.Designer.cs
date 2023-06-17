@@ -59,5 +59,15 @@ namespace ProyectoFarmacia.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap doge_punching_cheems {
+            get {
+                object obj = ResourceManager.GetObject("doge-punching-cheems", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }

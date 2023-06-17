@@ -19,7 +19,7 @@ namespace ProyectoFarmacia
 
         private void carga_Tick(object sender, EventArgs e)
         {
-            progressBarInicio.Increment(4);
+            progressBarInicio.Increment(6);
             label1.Text = progressBarInicio.Value.ToString() + "%";
 
             if (progressBarInicio.Value == progressBarInicio.Maximum)
