@@ -41,18 +41,29 @@ namespace ProyectoFarmacia
         {
             using (var client = new HttpClient())
             {
-                using (var response = await client.GetAsync("http://localhost:5226/api/Products"))
+                try
                 {
-                    if (response.IsSuccessStatusCode)
+                    using (var response = await client.GetAsync("http://localhost:5226/api/Products"))
                     {
-                        var products = await response.Content.ReadAsStringAsync();
-                        var result = JsonConvert.DeserializeObject<List<ProductDto>>(products);
-                        cargaDatos.DataSource = result.ToList();
+                        if (response.IsSuccessStatusCode)
+                        {
+                            var products = await response.Content.ReadAsStringAsync();
+                            var result = JsonConvert.DeserializeObject<List<ProductDto>>(products);
+                            cargaDatos.DataSource = result.ToList();
+                        }
+                        else
+                        {
+                            MessageBox.Show($"No se pudo obtener la lista de productos: {response.StatusCode}");
+                        }
                     }
-                    else
-                    {
-                        MessageBox.Show($"No se pudo obtener la lista de productos: {response.StatusCode}");
-                    }
+                }
+                catch (HttpRequestException ex)
+                {
+                    MessageBox.Show($"Error al obtener la lista de productos: {ex.Message}");
+                }
+                catch (TaskCanceledException ex)
+                {
+                    MessageBox.Show($"Tiempo de espera agotado al obtener la lista de productos: {ex.Message}");
                 }
             }
         }
@@ -61,18 +72,29 @@ namespace ProyectoFarmacia
         {
             using (var client = new HttpClient())
             {
-                using (var response = await client.GetAsync("https://localhost:7159/api/Users"))
+                try
                 {
-                    if (response.IsSuccessStatusCode)
+                    using (var response = await client.GetAsync("https://localhost:7159/api/Users"))
                     {
-                        var users = await response.Content.ReadAsStringAsync();
-                        var result = JsonConvert.DeserializeObject<List<UserDto>>(users);
-                        cargaDatos.DataSource = result.ToList();
+                        if (response.IsSuccessStatusCode)
+                        {
+                            var users = await response.Content.ReadAsStringAsync();
+                            var result = JsonConvert.DeserializeObject<List<UserDtofarm>>(users);
+                            cargaDatos.DataSource = result.ToList();
+                        }
+                        else
+                        {
+                            MessageBox.Show($"No se pudo obtener la lista de usuarios: {response.StatusCode}");
+                        }
                     }
-                    else
-                    {
-                        MessageBox.Show($"No se pudo obtener la lista de usuarios: {response.StatusCode}");
-                    }
+                }
+                catch (HttpRequestException ex)
+                {
+                    MessageBox.Show($"Error al obtener la lista de usuarios: {ex.Message}");
+                }
+                catch (TaskCanceledException ex)
+                {
+                    MessageBox.Show($"Tiempo de espera agotado al obtener la lista de usuarios: {ex.Message}");
                 }
             }
         }
@@ -84,16 +106,23 @@ namespace ProyectoFarmacia
                 tituloUrl.Text = "/Productos";
                 GetAllProducts();
             }
+            else if (rbEmpleados.Checked == true)
+            {
+                GetAllProducts();
+            }
         }
 
         private void btnEmpleados_Click(object sender, EventArgs e)
         {
-            if (rbProductos.Checked == true)
+            if (rbEmpleados.Checked == true)
             {
                 tituloUrl.Text = "/Empleados";
                 GetAllUsers();
             }
-            GetAllUsers();
+            else if (rbEmpleados.Checked == true)
+            {
+                GetAllUsers();
+            }
         }
         //se encarga de agregar dependiendo de que boton esta seleccionado
         private void btnAgregar_Click(object sender, EventArgs e)
