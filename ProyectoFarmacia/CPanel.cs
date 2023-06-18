@@ -84,6 +84,10 @@ namespace ProyectoFarmacia
                 tituloUrl.Text = "/Productos";
                 GetAllProducts();
             }
+            else if (rbEmpleados.Checked == true)
+            {
+                GetAllProducts();
+            }
         }
 
         private void btnEmpleados_Click(object sender, EventArgs e)
@@ -92,8 +96,10 @@ namespace ProyectoFarmacia
             {
                 tituloUrl.Text = "/Empleados";
                 GetAllUsers();
+            } else if (rbEmpleados.Checked == true) {
+                GetAllUsers();
             }
-            GetAllUsers();
+         
         }
         //se encarga de agregar dependiendo de que boton esta seleccionado
         private void btnAgregar_Click(object sender, EventArgs e)
