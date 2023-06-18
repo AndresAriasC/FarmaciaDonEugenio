@@ -30,6 +30,14 @@ namespace ProyectoProgramacionIIAPI
 
             CreateMap<User, UserCreateDto>().ReverseMap();
             CreateMap<User, UserUpdateDto>().ReverseMap();
+
+            //Client
+
+            CreateMap<Client, ClientDto>();
+            CreateMap<ClientDto, Client>();
+
+            CreateMap<Client, ClientDto>().ReverseMap();
+            CreateMap<ClientDto, Client>().ReverseMap();
         }
     }
 }

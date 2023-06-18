@@ -30,7 +30,7 @@ namespace ProyectoFarmacia
             Application.Exit();
         }
        
-    SqlConnection conexion = new SqlConnection("Server=LAPTOP-7TMN5ABO;Database=DBFarmaciaDonEugenio;Trusted_Connection=True;TrustServerCertificate=True;MultipleActiveResultSets=True;");
+    SqlConnection conexion = new SqlConnection("Server=OWEN_LAPTOP;Database=DBFarmaciaDonEugenio;Trusted_Connection=True;TrustServerCertificate=True;MultipleActiveResultSets=True;");
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
