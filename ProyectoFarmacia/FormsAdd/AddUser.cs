@@ -36,7 +36,7 @@ namespace ProyectoFarmacia.FormsAdd
             {
                 var serializedStudent = JsonConvert.SerializeObject(userCreateDtofarm);
                 var content = new StringContent(serializedStudent, Encoding.UTF8, "application/json");
-                var response = await client.PostAsync("https://localhost:7159/api/Users", content);
+                var response = await client.PostAsync("https://localhost:7159/api/Users", content).ConfigureAwait(false);
                 if (response.IsSuccessStatusCode)
                 {
                     MessageBox.Show("Empleado agregado");
