@@ -76,7 +76,7 @@ namespace ProyectoFarmacia
                 }
             }
         }
-       
+
         private async void btnProductos_Click(object sender, EventArgs e)
         {
             if (rbProductos.Checked == true)
@@ -115,6 +115,16 @@ namespace ProyectoFarmacia
 
         //se encarga de modificar dependiendo de que opcion este seleccionada
         private void btnModificar_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnClientes_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnProveedores_Click(object sender, EventArgs e)
         {
 
         }

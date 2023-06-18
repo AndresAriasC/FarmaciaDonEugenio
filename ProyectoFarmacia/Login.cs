@@ -34,16 +34,18 @@ namespace ProyectoFarmacia
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
+            try
+            {
                 conexion.Open();
-                 string consulta = "select * from Users where EmployeeCode = '" + campoCode.Text + "' and UserName='" + campoName.Text + "'";
-                    SqlCommand comando = new SqlCommand(consulta, conexion);
-                    SqlDataReader lector;
-                    lector = comando.ExecuteReader();
+                string consulta = "select * from Users where EmployeeCode = '" + campoCode.Text + "' and UserName='" + campoName.Text + "'";
+                SqlCommand comando = new SqlCommand(consulta, conexion);
+                SqlDataReader lector;
+                lector = comando.ExecuteReader();
 
                 if (lector.HasRows == true)
                 {
                     this.Hide();
-                string userName = campoName.Text;
+                    string userName = campoName.Text;
                     CPanel cont = new CPanel(userName);
                     cont.ShowDialog();
                 }
@@ -51,8 +53,17 @@ namespace ProyectoFarmacia
                 {
                     MessageBox.Show("Usuario o codigo incorrecto");
                 }
-                    lector.Close();
-                    conexion.Close();
+                lector.Close();
+                conexion.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                conexion.Close();
+            }
         }
 
     }
