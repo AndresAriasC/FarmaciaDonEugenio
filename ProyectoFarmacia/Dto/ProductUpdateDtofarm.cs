@@ -12,6 +12,8 @@ namespace ProyectoFarmacia.Dto
     public class ProductUpdateDtofarm
     {
         [Required]
+        public int ProductId { get; set; }
+        [Required]
         public string ProductCode { get; set; }
         [Required]
         public string ProductName { get; set; }

@@ -15,6 +15,7 @@ using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 using ProyectoFarmacia.Dto;
 using ProyectoFarmacia.FormsAdd;
+using System.Globalization;
 
 namespace ProyectoFarmacia
 {
@@ -22,6 +23,7 @@ namespace ProyectoFarmacia
     {
         private static int id = 0;
         private string UserName;
+        public DataGridView WinData { get { return cargaDatos; } }
         public CPanel(string userName)
         {
             InitializeComponent();
@@ -99,7 +101,7 @@ namespace ProyectoFarmacia
             }
         }
 
-        private async void btnProductos_Click(object sender, EventArgs e)
+        private void btnProductos_Click(object sender, EventArgs e)
         {
             if (rbProductos.Checked == true)
             {
@@ -143,19 +145,78 @@ namespace ProyectoFarmacia
         }
 
         //se encarga de modificar dependiendo de que opcion este seleccionada
+
+        private void cargaDatos_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            foreach (DataGridViewRow row in cargaDatos.Rows)
+            {
+                if (row.Index == e.RowIndex)
+                {
+                    id = int.Parse(row.Cells[0].Value.ToString());
+                    GetProductById(id);
+                }
+            }
+        }
+
+        private async void GetProductById(int id)
+        {
+            string fechaTexto = "18/06/2023";
+            string formatoFecha = "dd/MM/yyyy";
+            DateTime fecha;
+            using (var client = new HttpClient())
+            {
+                var response = await client.GetAsync(String.Format("{0}/{1}",
+                    "http://localhost:5226/api/Products", id));
+                if (response.IsSuccessStatusCode)
+                {
+                    var data = await response.Content.ReadAsStringAsync();
+                    ProductDtofarm productDtofarm = JsonConvert.DeserializeObject<ProductDtofarm>(data);
+                    campoId.Text = productDtofarm.ProductId.ToString();
+                    campoCodigo.Text = productDtofarm.ProductCode.ToString();
+                    campoName.Text = productDtofarm.ProductName.ToString();
+                    campoDescripcion.Text = productDtofarm.ProductDescription.ToString();
+                    campoCategoia.Text = productDtofarm.CategoryId.ToString();
+                }
+                else
+                {
+                    MessageBox.Show($"No se puede obtener el producto: {response.StatusCode}");
+                }
+            }
+        }
+
         private void btnModificar_Click(object sender, EventArgs e)
         {
-
+            if (rbProductos.Checked == true)
+            {
+                if (id != 0)
+                {
+                    UpdateProduct();
+                }
+            }
         }
 
-        private void btnClientes_Click(object sender, EventArgs e)
+        private async void UpdateProduct()
         {
+            ProductUpdateDtofarm productDto = new ProductUpdateDtofarm();
+            productDto.ProductId = id;
+            productDto.ProductCode = campoCodigo.Text;
+            productDto.ProductName = campoName.Text;
+            productDto.ProductDescription = campoDescripcion.Text;
+            productDto.CategoryId = Convert.ToInt32(campoCategoia.Text);
 
-        }
+            using (var client = new HttpClient())
+            {
+                var student = JsonConvert.SerializeObject(productDto);
+                var content = new StringContent(student, Encoding.UTF8, "application/json");
+                var response = await client.PutAsync(String.Format("{0}/{1}",
+                    "http://localhost:5226/api/Products", id), content);
 
-        private void btnProveedores_Click(object sender, EventArgs e)
-        {
+                if (response.IsSuccessStatusCode)
+                    MessageBox.Show("Producto actualizado");
 
+                else
+                    MessageBox.Show($"Error al actualizar el Producto: {response.StatusCode}");
+            }
         }
     }
 }
