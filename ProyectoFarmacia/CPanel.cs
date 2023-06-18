@@ -88,7 +88,7 @@ namespace ProyectoFarmacia
 
         private void btnEmpleados_Click(object sender, EventArgs e)
         {
-            if (rbProductos.Checked == true)
+            if (rbEmpleados.Checked == true)
             {
                 tituloUrl.Text = "/Empleados";
                 GetAllUsers();
