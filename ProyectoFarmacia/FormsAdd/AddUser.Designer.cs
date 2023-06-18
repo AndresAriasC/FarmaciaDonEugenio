@@ -44,84 +44,93 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
-            label1.Location = new Point(129, 9);
+            label1.Location = new Point(147, 12);
             label1.Name = "label1";
-            label1.Size = new Size(217, 25);
+            label1.Size = new Size(276, 32);
             label1.TabIndex = 0;
             label1.Text = "AGREGAR EMPLEADOS";
             // 
             // txtEmpCode
             // 
-            txtEmpCode.Location = new Point(42, 73);
+            txtEmpCode.Location = new Point(48, 97);
+            txtEmpCode.Margin = new Padding(3, 4, 3, 4);
             txtEmpCode.Name = "txtEmpCode";
-            txtEmpCode.Size = new Size(100, 23);
+            txtEmpCode.Size = new Size(114, 27);
             txtEmpCode.TabIndex = 1;
             // 
             // txtEmpName
             // 
-            txtEmpName.Location = new Point(196, 78);
+            txtEmpName.Location = new Point(224, 104);
+            txtEmpName.Margin = new Padding(3, 4, 3, 4);
             txtEmpName.Name = "txtEmpName";
-            txtEmpName.Size = new Size(100, 23);
+            txtEmpName.Size = new Size(114, 27);
             txtEmpName.TabIndex = 2;
             // 
             // txtEmpLastName
             // 
-            txtEmpLastName.Location = new Point(365, 82);
+            txtEmpLastName.Location = new Point(417, 109);
+            txtEmpLastName.Margin = new Padding(3, 4, 3, 4);
             txtEmpLastName.Name = "txtEmpLastName";
-            txtEmpLastName.Size = new Size(100, 23);
+            txtEmpLastName.Size = new Size(114, 27);
             txtEmpLastName.TabIndex = 3;
             // 
             // btnAgregarEmpleado
             // 
-            btnAgregarEmpleado.Location = new Point(196, 271);
+            btnAgregarEmpleado.Location = new Point(224, 361);
+            btnAgregarEmpleado.Margin = new Padding(3, 4, 3, 4);
             btnAgregarEmpleado.Name = "btnAgregarEmpleado";
-            btnAgregarEmpleado.Size = new Size(75, 23);
+            btnAgregarEmpleado.Size = new Size(86, 31);
             btnAgregarEmpleado.TabIndex = 4;
             btnAgregarEmpleado.Text = "Agregar";
             btnAgregarEmpleado.UseVisualStyleBackColor = true;
-
+            btnAgregarEmpleado.Click += btnAgregarEmpleado_Click;
             // 
             // txtEmpEmail
             // 
-            txtEmpEmail.Location = new Point(42, 143);
+            txtEmpEmail.Location = new Point(48, 191);
+            txtEmpEmail.Margin = new Padding(3, 4, 3, 4);
             txtEmpEmail.Name = "txtEmpEmail";
-            txtEmpEmail.Size = new Size(100, 23);
+            txtEmpEmail.Size = new Size(114, 27);
             txtEmpEmail.TabIndex = 5;
             // 
             // txtEmpPhone
             // 
-            txtEmpPhone.Location = new Point(196, 143);
+            txtEmpPhone.Location = new Point(224, 191);
+            txtEmpPhone.Margin = new Padding(3, 4, 3, 4);
             txtEmpPhone.Name = "txtEmpPhone";
-            txtEmpPhone.Size = new Size(100, 23);
+            txtEmpPhone.Size = new Size(114, 27);
             txtEmpPhone.TabIndex = 6;
             // 
             // txtEmpAdress
             // 
-            txtEmpAdress.Location = new Point(365, 143);
+            txtEmpAdress.Location = new Point(417, 191);
+            txtEmpAdress.Margin = new Padding(3, 4, 3, 4);
             txtEmpAdress.Name = "txtEmpAdress";
-            txtEmpAdress.Size = new Size(100, 23);
+            txtEmpAdress.Size = new Size(114, 27);
             txtEmpAdress.TabIndex = 7;
             // 
             // txtEmpSalary
             // 
-            txtEmpSalary.Location = new Point(42, 212);
+            txtEmpSalary.Location = new Point(48, 283);
+            txtEmpSalary.Margin = new Padding(3, 4, 3, 4);
             txtEmpSalary.Name = "txtEmpSalary";
-            txtEmpSalary.Size = new Size(100, 23);
+            txtEmpSalary.Size = new Size(114, 27);
             txtEmpSalary.TabIndex = 8;
             // 
             // dateTimePicker1
             // 
             dateTimePicker1.Format = DateTimePickerFormat.Short;
-            dateTimePicker1.Location = new Point(196, 212);
+            dateTimePicker1.Location = new Point(224, 283);
+            dateTimePicker1.Margin = new Padding(3, 4, 3, 4);
             dateTimePicker1.Name = "dateTimePicker1";
-            dateTimePicker1.Size = new Size(110, 23);
+            dateTimePicker1.Size = new Size(125, 27);
             dateTimePicker1.TabIndex = 9;
             // 
             // AddUser
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(485, 338);
+            ClientSize = new Size(554, 451);
             Controls.Add(dateTimePicker1);
             Controls.Add(txtEmpSalary);
             Controls.Add(txtEmpAdress);
@@ -132,7 +141,6 @@
             Controls.Add(txtEmpName);
             Controls.Add(txtEmpCode);
             Controls.Add(label1);
-            Margin = new Padding(3, 2, 3, 2);
             Name = "AddUser";
             Text = "Agregar empleados";
             ResumeLayout(false);

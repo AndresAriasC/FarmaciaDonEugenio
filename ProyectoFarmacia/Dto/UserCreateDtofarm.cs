@@ -1,11 +1,10 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 
-namespace ProyectoProgramacionIIAPI.Models.Dto
+namespace ProyectoFarmacia.Dto
 {
-    public class UserUpdateDtofarm
+    public class UserCreateDtofarm
     {
-        public int UserId { get; set; }
         [Required]
         public string EmployeeCode { get; set; }
         [Required]

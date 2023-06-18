@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 
-namespace ProyectoProgramacionIIAPI.Models.Dto
+namespace ProyectoFarmacia.Dto
 {
     public class UserDtofarm
     {
