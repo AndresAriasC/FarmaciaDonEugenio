@@ -34,6 +34,7 @@
             campoDescripcion = new TextBox();
             campoCategoria = new TextBox();
             btnAgregarProducto = new Button();
+            dateTimePicker1 = new DateTimePicker();
             SuspendLayout();
             // 
             // label1
@@ -71,7 +72,7 @@
             // 
             // campoCategoria
             // 
-            campoCategoria.Location = new Point(143, 142);
+            campoCategoria.Location = new Point(12, 146);
             campoCategoria.Margin = new Padding(3, 2, 3, 2);
             campoCategoria.Name = "campoCategoria";
             campoCategoria.Size = new Size(110, 23);
@@ -82,17 +83,26 @@
             btnAgregarProducto.Location = new Point(189, 242);
             btnAgregarProducto.Margin = new Padding(3, 2, 3, 2);
             btnAgregarProducto.Name = "btnAgregarProducto";
-            btnAgregarProducto.Size = new Size(82, 22);
+            btnAgregarProducto.Size = new Size(82, 31);
             btnAgregarProducto.TabIndex = 5;
             btnAgregarProducto.Text = "Agregar";
             btnAgregarProducto.UseVisualStyleBackColor = true;
             btnAgregarProducto.Click += btnAgregarProducto_Click;
+            // 
+            // dateTimePicker1
+            // 
+            dateTimePicker1.Format = DateTimePickerFormat.Short;
+            dateTimePicker1.Location = new Point(192, 142);
+            dateTimePicker1.Name = "dateTimePicker1";
+            dateTimePicker1.Size = new Size(95, 23);
+            dateTimePicker1.TabIndex = 6;
             // 
             // AddProduct
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(456, 381);
+            Controls.Add(dateTimePicker1);
             Controls.Add(btnAgregarProducto);
             Controls.Add(campoCategoria);
             Controls.Add(campoDescripcion);
@@ -114,5 +124,6 @@
         private TextBox campoDescripcion;
         private TextBox campoCategoria;
         private Button btnAgregarProducto;
+        private DateTimePicker dateTimePicker1;
     }
 }
