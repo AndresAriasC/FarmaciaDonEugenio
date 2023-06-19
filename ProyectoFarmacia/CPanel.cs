@@ -210,7 +210,7 @@ namespace ProyectoFarmacia
             }
             GetAllClients();
         }
-
+        //:V
         private void btnProveedores_Click(object sender, EventArgs e)
         {
             if (rbClientes.Checked == true)
