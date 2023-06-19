@@ -27,6 +27,8 @@ namespace ProyectoFarmacia.FormsAdd
             productCreateDtofarm.ProductName = campoName.Text;
             productCreateDtofarm.ProductDescription = campoDescripcion.Text;
             productCreateDtofarm.CategoryId = Convert.ToInt32(campoCategoria.Text);
+
+
             using (var client = new HttpClient())
             {
                 var serializedStudent = JsonConvert.SerializeObject(productCreateDtofarm);

@@ -59,6 +59,9 @@ namespace ProyectoFarmacia
         {
             Application.Exit();
         }
+
+        /// ///////////////////////////////////////////////////////////////////////////////////////////
+
         //Llama a todos lo productos de la API productos
         private async void GetAllProducts()
         {
@@ -122,6 +125,40 @@ namespace ProyectoFarmacia
             }
         }
 
+        //Llama a todos los usuarios de la API categorias
+        private async void GetAllCategories()
+        {
+            using (var client = new HttpClient())
+            {
+                try
+                {
+                    using (var response = await client.GetAsync("https://localhost:7159/api/Category"))
+                    {
+                        if (response.IsSuccessStatusCode)
+                        {
+                            var categories = await response.Content.ReadAsStringAsync();
+                            var result = JsonConvert.DeserializeObject<List<CategoryDtofarm>>(categories);
+                            cargaDatos.DataSource = result.ToList();
+                        }
+                        else
+                        {
+                            MessageBox.Show($"No se pudo obtener la lista de categorias: {response.StatusCode}");
+                        }
+                    }
+                }
+                catch (HttpRequestException ex)
+                {
+                    MessageBox.Show($"Error al obtener la lista de categorias: {ex.Message}");
+                }
+                catch (TaskCanceledException ex)
+                {
+                    MessageBox.Show($"Tiempo de espera agotado al obtener la lista de categorias: {ex.Message}");
+                }
+            }
+        }
+
+        /// ///////////////////////////////////////////////////////////////////////////////////////////
+     
         private void btnProductos_Click(object sender, EventArgs e)
         {
             if (rbProductos.Checked == true)
@@ -143,7 +180,30 @@ namespace ProyectoFarmacia
                 GetAllProducts();
             }
         }
+        private void btnCategory_Click(object sender, EventArgs e)
+        {
+            if(rbCategory.Checked == true)
+            {
+                tituloUrl.Text = "/Categorias";
+                lbl1.Text = "Category Id";
+                lbl2.Text = "Category Name";
+                lbl3.Text = "Empty";
+                lbl4.Text = "Empty";
+                lbl5.Text = "Empty";
+                lbl6.Text = "Empty";
+                lbl7.Text = "Empty";
+                lbl8.Text = "Empty";
+                campoCodigo.Enabled = false;
+                campoDescripcion.Enabled = false;
+                campoCategoia.Enabled = false;
+                campotxt6.Enabled = false;
+                campotxt7.Enabled = false;
+                campotxt8.Enabled = false;
 
+                Clear();
+                GetAllCategories();
+            }
+        }
         private void btnEmpleados_Click(object sender, EventArgs e)
         {
             if (rbEmpleados.Checked == true)
@@ -165,6 +225,10 @@ namespace ProyectoFarmacia
                 GetAllUsers();
             }
         }
+
+        /// ///////////////////////////////////////////////////////////////////////////////////////////
+
+
         //se encarga de agregar dependiendo de que boton esta seleccionado
         private void btnAgregar_Click(object sender, EventArgs e)
         {
@@ -180,9 +244,14 @@ namespace ProyectoFarmacia
                 adduser.ShowDialog();
                 GetAllUsers();
             }
-
+            else if (rbCategory.Checked == true)
+            {
+                AddCategory addcategory = new AddCategory();
+                addcategory.ShowDialog();
+                GetAllCategories();
+            }
         }
-
+        /// ///////////////////////////////////////////////////////////////////////////////////////////
         //se encarga de modificar dependiendo de que opcion este seleccionada
 
         private void cargaDatos_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -205,10 +274,20 @@ namespace ProyectoFarmacia
                         GetUserById(id);
                     }
                 }
+                else if (rbCategory.Checked== true)
+                {
+                    if(row.Index == e.RowIndex)
+                    {
+                        id = int.Parse(row.Cells[0].Value?.ToString());
+                        GetCategoryById(id);
+                    }
+
+                }
 
             }
         }
 
+        /// ///////////////////////////////////////////////////////////////////////////////////////////
         private async void GetProductById(int id)
         {
 
@@ -259,6 +338,28 @@ namespace ProyectoFarmacia
             }
         }
 
+        private async void GetCategoryById(int id)
+        {
+            using (var client = new HttpClient())
+            {
+                var response = await client.GetAsync(String.Format("{0}/{1}",
+                    "https://localhost:7159/api/Category", id));
+                if (response.IsSuccessStatusCode)
+                {
+                    var data = await response.Content.ReadAsStringAsync();
+                    CategoryDtofarm categoryDtofarm = JsonConvert.DeserializeObject<CategoryDtofarm>(data);
+                    campoId.Text = categoryDtofarm.CategoryId.ToString();
+                    campoName.Text = categoryDtofarm.CategoryName.ToString();
+                }
+                else
+                {
+                    MessageBox.Show($"No se puede obtener la categoria: {response.StatusCode}");
+                }
+            }
+        }
+
+        /// ///////////////////////////////////////////////////////////////////////////////////////////
+
         private void btnModificar_Click(object sender, EventArgs e)
         {
             if (rbProductos.Checked == true)
@@ -273,6 +374,13 @@ namespace ProyectoFarmacia
                 if (id != 0)
                 {
                     UpdateEmpleado();
+                }
+            }
+            else if (rbCategory.Checked == true)
+            {
+                if (id != 0)
+                {
+                    UpdateCategory();
                 }
             }
         }
@@ -341,6 +449,34 @@ namespace ProyectoFarmacia
             }
         }
 
+        private async void UpdateCategory()
+        {
+            UpdateCategoryDtoFarm updateCategoryDtoFarm = new UpdateCategoryDtoFarm();
+            updateCategoryDtoFarm.CategoryName = campoName.Text;
+            updateCategoryDtoFarm.CategoryId = id;
+
+            using (var client = new HttpClient())
+            {
+                var category = JsonConvert.SerializeObject(updateCategoryDtoFarm);
+                var content = new StringContent(category, Encoding.UTF8, "application/json");
+                var response = await client.PutAsync(String.Format("{0}/{1}",
+                    "https://localhost:7159/api/Category", id), content);
+
+                if (response.IsSuccessStatusCode)
+                {
+
+                    MessageBox.Show("Categoria actualizada");
+                    GetAllCategories();
+                }
+                else
+                {
+                    MessageBox.Show($"Error al actualizar la categoria: {response.StatusCode}");
+                }
+            }
+        }
+
+        /// ///////////////////////////////////////////////////////////////////////////////////////////
+
         private void btnEliminar_Click(object sender, EventArgs e)
         {
             if (rbProductos.Checked == true)
@@ -357,7 +493,30 @@ namespace ProyectoFarmacia
                     DeleteEmpleado();
                 }
             }
+            else if (rbCategory.Checked == true)
+            {
+                if (id != 0)
+                {
+                    DeleteCategory();
+                }
+            }
 
+        }
+
+        private async void DeleteCategory()
+        {
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("https://localhost:7159/api/Category");
+                var response = await client.DeleteAsync(String.Format("{0}/{1}",
+                    "https://localhost:7159/api/Category", id));
+                if (response.IsSuccessStatusCode)
+                    MessageBox.Show("Categoria eliminada con éxito");
+                else
+                    MessageBox.Show($"No se pudo eliminar la categoria: {response.StatusCode}");
+            }
+            Clear();
+            GetAllCategories();
         }
 
         private async void DeleteEmpleado()
