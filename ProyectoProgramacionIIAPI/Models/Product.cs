@@ -20,8 +20,8 @@ namespace ProyectoProgramacionIIAPI.Models
         public Category Category { get; set; }
         public DateTime DateOfCreation { get; set; }
 
-        public int ProviderId { get; set; }
-        [ForeignKey("ProviderId")]
-        public Provider Provider { get; set; }
+        //public int ProviderId { get; set; }
+        //[ForeignKey("ProviderId")]
+        //public Provider Provider { get; set; }
     }
 }

@@ -14,7 +14,7 @@ namespace ProyectoProgramacionIIAPI.Models.Dto
         [Required]
         public string ProductDescription { get; set; }
         public string CategoryId { get; set; }
-        public string ProviderId { get; set; }
+        //public string ProviderId { get; set; }
         public DateTime DateOfCreation { get; set; }
 
     }
