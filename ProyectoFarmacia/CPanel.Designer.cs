@@ -39,6 +39,7 @@
             pictureBox2 = new PictureBox();
             pictureBox3 = new PictureBox();
             panel7 = new Panel();
+            panel3 = new Panel();
             rbProveedores = new RadioButton();
             rbClientes = new RadioButton();
             rbEmpleados = new RadioButton();
@@ -57,7 +58,6 @@
             btnEliminar = new Button();
             btnLimpiar = new Button();
             titulo = new Label();
-            panel3 = new Panel();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -78,8 +78,9 @@
             panel1.Controls.Add(label1);
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(0, 0);
+            panel1.Margin = new Padding(3, 2, 3, 2);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1245, 66);
+            panel1.Size = new Size(1089, 50);
             panel1.TabIndex = 0;
             // 
             // btnSalir
@@ -88,9 +89,10 @@
             btnSalir.FlatStyle = FlatStyle.Popup;
             btnSalir.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             btnSalir.ForeColor = Color.White;
-            btnSalir.Location = new Point(1177, 10);
+            btnSalir.Location = new Point(1030, 8);
+            btnSalir.Margin = new Padding(3, 2, 3, 2);
             btnSalir.Name = "btnSalir";
-            btnSalir.Size = new Size(63, 48);
+            btnSalir.Size = new Size(55, 36);
             btnSalir.TabIndex = 10;
             btnSalir.Text = "X";
             btnSalir.UseVisualStyleBackColor = false;
@@ -101,9 +103,9 @@
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
             label1.ForeColor = Color.White;
-            label1.Location = new Point(23, 15);
+            label1.Location = new Point(20, 11);
             label1.Name = "label1";
-            label1.Size = new Size(90, 31);
+            label1.Size = new Size(73, 25);
             label1.TabIndex = 0;
             label1.Text = "Cpanel";
             // 
@@ -111,9 +113,10 @@
             // 
             pictureBox5.BackColor = Color.Transparent;
             pictureBox5.Image = (Image)resources.GetObject("pictureBox5.Image");
-            pictureBox5.Location = new Point(1082, 72);
+            pictureBox5.Location = new Point(947, 54);
+            pictureBox5.Margin = new Padding(3, 2, 3, 2);
             pictureBox5.Name = "pictureBox5";
-            pictureBox5.Size = new Size(29, 31);
+            pictureBox5.Size = new Size(25, 23);
             pictureBox5.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox5.TabIndex = 2;
             pictureBox5.TabStop = false;
@@ -124,9 +127,9 @@
             userActive.BackColor = Color.Transparent;
             userActive.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             userActive.ForeColor = Color.FromArgb(64, 64, 64);
-            userActive.Location = new Point(1117, 71);
+            userActive.Location = new Point(977, 53);
             userActive.Name = "userActive";
-            userActive.Size = new Size(54, 28);
+            userActive.Size = new Size(44, 21);
             userActive.TabIndex = 1;
             userActive.Text = "User";
             // 
@@ -136,9 +139,10 @@
             btnProductos.FlatStyle = FlatStyle.Flat;
             btnProductos.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             btnProductos.ForeColor = Color.White;
-            btnProductos.Location = new Point(88, 166);
+            btnProductos.Location = new Point(77, 124);
+            btnProductos.Margin = new Padding(3, 2, 3, 2);
             btnProductos.Name = "btnProductos";
-            btnProductos.Size = new Size(179, 45);
+            btnProductos.Size = new Size(157, 34);
             btnProductos.TabIndex = 0;
             btnProductos.Text = "PRODUCTOS";
             btnProductos.UseVisualStyleBackColor = false;
@@ -147,9 +151,10 @@
             // pictureBox1
             // 
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(23, 166);
+            pictureBox1.Location = new Point(20, 124);
+            pictureBox1.Margin = new Padding(3, 2, 3, 2);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(59, 45);
+            pictureBox1.Size = new Size(52, 34);
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox1.TabIndex = 1;
             pictureBox1.TabStop = false;
@@ -157,9 +162,10 @@
             // pictureBox2
             // 
             pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
-            pictureBox2.Location = new Point(23, 247);
+            pictureBox2.Location = new Point(20, 185);
+            pictureBox2.Margin = new Padding(3, 2, 3, 2);
             pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(59, 45);
+            pictureBox2.Size = new Size(52, 34);
             pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox2.TabIndex = 1;
             pictureBox2.TabStop = false;
@@ -167,9 +173,10 @@
             // pictureBox3
             // 
             pictureBox3.Image = (Image)resources.GetObject("pictureBox3.Image");
-            pictureBox3.Location = new Point(23, 327);
+            pictureBox3.Location = new Point(20, 245);
+            pictureBox3.Margin = new Padding(3, 2, 3, 2);
             pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new Size(59, 45);
+            pictureBox3.Size = new Size(52, 34);
             pictureBox3.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox3.TabIndex = 1;
             pictureBox3.TabStop = false;
@@ -192,39 +199,53 @@
             panel7.Controls.Add(btnProductos);
             panel7.Controls.Add(pictureBox1);
             panel7.Dock = DockStyle.Left;
-            panel7.Location = new Point(0, 66);
+            panel7.Location = new Point(0, 50);
+            panel7.Margin = new Padding(3, 2, 3, 2);
             panel7.Name = "panel7";
-            panel7.Size = new Size(294, 592);
+            panel7.Size = new Size(257, 444);
             panel7.TabIndex = 10;
+            // 
+            // panel3
+            // 
+            panel3.BackColor = Color.FromArgb(0, 0, 64);
+            panel3.Dock = DockStyle.Bottom;
+            panel3.Location = new Point(0, 400);
+            panel3.Margin = new Padding(3, 2, 3, 2);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(257, 44);
+            panel3.TabIndex = 20;
             // 
             // rbProveedores
             // 
             rbProveedores.AutoSize = true;
-            rbProveedores.Location = new Point(23, 377);
+            rbProveedores.Location = new Point(20, 283);
+            rbProveedores.Margin = new Padding(3, 2, 3, 2);
             rbProveedores.Name = "rbProveedores";
-            rbProveedores.Size = new Size(96, 24);
+            rbProveedores.Size = new Size(90, 19);
             rbProveedores.TabIndex = 17;
             rbProveedores.TabStop = true;
-            rbProveedores.Text = "Productos";
+            rbProveedores.Text = "Proveedores";
             rbProveedores.UseVisualStyleBackColor = true;
             // 
             // rbClientes
             // 
             rbClientes.AutoSize = true;
-            rbClientes.Location = new Point(23, 298);
+            rbClientes.Location = new Point(20, 224);
+            rbClientes.Margin = new Padding(3, 2, 3, 2);
             rbClientes.Name = "rbClientes";
-            rbClientes.Size = new Size(96, 24);
+            rbClientes.Size = new Size(67, 19);
             rbClientes.TabIndex = 16;
             rbClientes.TabStop = true;
-            rbClientes.Text = "Productos";
+            rbClientes.Text = "Clientes";
             rbClientes.UseVisualStyleBackColor = true;
             // 
             // rbEmpleados
             // 
             rbEmpleados.AutoSize = true;
-            rbEmpleados.Location = new Point(23, 217);
+            rbEmpleados.Location = new Point(20, 163);
+            rbEmpleados.Margin = new Padding(3, 2, 3, 2);
             rbEmpleados.Name = "rbEmpleados";
-            rbEmpleados.Size = new Size(104, 24);
+            rbEmpleados.Size = new Size(83, 19);
             rbEmpleados.TabIndex = 15;
             rbEmpleados.TabStop = true;
             rbEmpleados.Text = "Empleados";
@@ -233,9 +254,10 @@
             // rbProductos
             // 
             rbProductos.AutoSize = true;
-            rbProductos.Location = new Point(23, 136);
+            rbProductos.Location = new Point(20, 102);
+            rbProductos.Margin = new Padding(3, 2, 3, 2);
             rbProductos.Name = "rbProductos";
-            rbProductos.Size = new Size(96, 24);
+            rbProductos.Size = new Size(79, 19);
             rbProductos.TabIndex = 14;
             rbProductos.TabStop = true;
             rbProductos.Text = "Productos";
@@ -246,16 +268,18 @@
             panel2.BackColor = Color.LightGray;
             panel2.Controls.Add(pictureBox4);
             panel2.Location = new Point(0, 0);
+            panel2.Margin = new Padding(3, 2, 3, 2);
             panel2.Name = "panel2";
-            panel2.Size = new Size(294, 108);
+            panel2.Size = new Size(257, 81);
             panel2.TabIndex = 8;
             // 
             // pictureBox4
             // 
             pictureBox4.Image = (Image)resources.GetObject("pictureBox4.Image");
-            pictureBox4.Location = new Point(72, 7);
+            pictureBox4.Location = new Point(63, 5);
+            pictureBox4.Margin = new Padding(3, 2, 3, 2);
             pictureBox4.Name = "pictureBox4";
-            pictureBox4.Size = new Size(147, 98);
+            pictureBox4.Size = new Size(129, 74);
             pictureBox4.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox4.TabIndex = 11;
             pictureBox4.TabStop = false;
@@ -266,19 +290,22 @@
             btnProveedores.FlatStyle = FlatStyle.Flat;
             btnProveedores.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             btnProveedores.ForeColor = Color.White;
-            btnProveedores.Location = new Point(88, 407);
+            btnProveedores.Location = new Point(77, 305);
+            btnProveedores.Margin = new Padding(3, 2, 3, 2);
             btnProveedores.Name = "btnProveedores";
-            btnProveedores.Size = new Size(179, 45);
+            btnProveedores.Size = new Size(157, 34);
             btnProveedores.TabIndex = 5;
             btnProveedores.Text = "PROVEEDORES";
             btnProveedores.UseVisualStyleBackColor = false;
+            btnProveedores.Click += btnProveedores_Click;
             // 
             // pictureBox6
             // 
             pictureBox6.Image = (Image)resources.GetObject("pictureBox6.Image");
-            pictureBox6.Location = new Point(23, 407);
+            pictureBox6.Location = new Point(20, 305);
+            pictureBox6.Margin = new Padding(3, 2, 3, 2);
             pictureBox6.Name = "pictureBox6";
-            pictureBox6.Size = new Size(59, 45);
+            pictureBox6.Size = new Size(52, 34);
             pictureBox6.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox6.TabIndex = 4;
             pictureBox6.TabStop = false;
@@ -289,12 +316,14 @@
             btnClientes.FlatStyle = FlatStyle.Flat;
             btnClientes.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             btnClientes.ForeColor = Color.White;
-            btnClientes.Location = new Point(88, 327);
+            btnClientes.Location = new Point(77, 245);
+            btnClientes.Margin = new Padding(3, 2, 3, 2);
             btnClientes.Name = "btnClientes";
-            btnClientes.Size = new Size(179, 45);
+            btnClientes.Size = new Size(157, 34);
             btnClientes.TabIndex = 3;
             btnClientes.Text = "CLIENTES";
             btnClientes.UseVisualStyleBackColor = false;
+            btnClientes.Click += btnClientes_Click;
             // 
             // btnEmpleados
             // 
@@ -302,9 +331,10 @@
             btnEmpleados.FlatStyle = FlatStyle.Flat;
             btnEmpleados.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             btnEmpleados.ForeColor = Color.White;
-            btnEmpleados.Location = new Point(88, 247);
+            btnEmpleados.Location = new Point(77, 185);
+            btnEmpleados.Margin = new Padding(3, 2, 3, 2);
             btnEmpleados.Name = "btnEmpleados";
-            btnEmpleados.Size = new Size(179, 45);
+            btnEmpleados.Size = new Size(157, 34);
             btnEmpleados.TabIndex = 2;
             btnEmpleados.Text = "EMPLEADOS";
             btnEmpleados.UseVisualStyleBackColor = false;
@@ -318,12 +348,13 @@
             cargaDatos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             cargaDatos.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.DisplayedCells;
             cargaDatos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            cargaDatos.Location = new Point(327, 181);
+            cargaDatos.Location = new Point(286, 136);
+            cargaDatos.Margin = new Padding(3, 2, 3, 2);
             cargaDatos.Name = "cargaDatos";
             cargaDatos.ReadOnly = true;
             cargaDatos.RowHeadersWidth = 51;
             cargaDatos.RowTemplate.Height = 29;
-            cargaDatos.Size = new Size(721, 344);
+            cargaDatos.Size = new Size(631, 258);
             cargaDatos.TabIndex = 12;
             // 
             // label2
@@ -332,9 +363,9 @@
             label2.BackColor = Color.Transparent;
             label2.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point);
             label2.ForeColor = Color.Gray;
-            label2.Location = new Point(300, 69);
+            label2.Location = new Point(262, 52);
             label2.Name = "label2";
-            label2.Size = new Size(86, 31);
+            label2.Size = new Size(73, 25);
             label2.TabIndex = 13;
             label2.Text = "CPanel";
             // 
@@ -344,9 +375,9 @@
             tituloUrl.BackColor = Color.Transparent;
             tituloUrl.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point);
             tituloUrl.ForeColor = Color.Gray;
-            tituloUrl.Location = new Point(380, 69);
+            tituloUrl.Location = new Point(332, 52);
             tituloUrl.Name = "tituloUrl";
-            tituloUrl.Size = new Size(24, 31);
+            tituloUrl.Size = new Size(20, 25);
             tituloUrl.TabIndex = 14;
             tituloUrl.Text = "/";
             // 
@@ -356,9 +387,10 @@
             btnAgregar.FlatStyle = FlatStyle.Flat;
             btnAgregar.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             btnAgregar.ForeColor = Color.White;
-            btnAgregar.Location = new Point(1061, 181);
+            btnAgregar.Location = new Point(928, 136);
+            btnAgregar.Margin = new Padding(3, 2, 3, 2);
             btnAgregar.Name = "btnAgregar";
-            btnAgregar.Size = new Size(179, 45);
+            btnAgregar.Size = new Size(157, 34);
             btnAgregar.TabIndex = 15;
             btnAgregar.Text = "AGREGAR";
             btnAgregar.UseVisualStyleBackColor = false;
@@ -370,9 +402,10 @@
             btnModificar.FlatStyle = FlatStyle.Flat;
             btnModificar.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             btnModificar.ForeColor = Color.White;
-            btnModificar.Location = new Point(1061, 232);
+            btnModificar.Location = new Point(928, 174);
+            btnModificar.Margin = new Padding(3, 2, 3, 2);
             btnModificar.Name = "btnModificar";
-            btnModificar.Size = new Size(179, 45);
+            btnModificar.Size = new Size(157, 34);
             btnModificar.TabIndex = 16;
             btnModificar.Text = "MODIFICAR";
             btnModificar.UseVisualStyleBackColor = false;
@@ -384,9 +417,10 @@
             btnEliminar.FlatStyle = FlatStyle.Flat;
             btnEliminar.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             btnEliminar.ForeColor = Color.White;
-            btnEliminar.Location = new Point(1061, 283);
+            btnEliminar.Location = new Point(928, 212);
+            btnEliminar.Margin = new Padding(3, 2, 3, 2);
             btnEliminar.Name = "btnEliminar";
-            btnEliminar.Size = new Size(179, 45);
+            btnEliminar.Size = new Size(157, 34);
             btnEliminar.TabIndex = 17;
             btnEliminar.Text = "ELIMINAR";
             btnEliminar.UseVisualStyleBackColor = false;
@@ -397,9 +431,10 @@
             btnLimpiar.FlatStyle = FlatStyle.Flat;
             btnLimpiar.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             btnLimpiar.ForeColor = Color.White;
-            btnLimpiar.Location = new Point(1061, 334);
+            btnLimpiar.Location = new Point(928, 250);
+            btnLimpiar.Margin = new Padding(3, 2, 3, 2);
             btnLimpiar.Name = "btnLimpiar";
-            btnLimpiar.Size = new Size(179, 45);
+            btnLimpiar.Size = new Size(157, 34);
             btnLimpiar.TabIndex = 18;
             btnLimpiar.Text = "LIMPIAR";
             btnLimpiar.UseVisualStyleBackColor = false;
@@ -410,27 +445,18 @@
             titulo.BackColor = Color.Transparent;
             titulo.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point);
             titulo.ForeColor = Color.Gray;
-            titulo.Location = new Point(320, 147);
+            titulo.Location = new Point(280, 110);
             titulo.Name = "titulo";
-            titulo.Size = new Size(87, 31);
+            titulo.Size = new Size(73, 25);
             titulo.TabIndex = 19;
             titulo.Text = "DATOS";
             // 
-            // panel3
-            // 
-            panel3.BackColor = Color.FromArgb(0, 0, 64);
-            panel3.Dock = DockStyle.Bottom;
-            panel3.Location = new Point(0, 533);
-            panel3.Name = "panel3";
-            panel3.Size = new Size(294, 59);
-            panel3.TabIndex = 20;
-            // 
             // CPanel
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(1245, 658);
+            ClientSize = new Size(1089, 494);
             Controls.Add(pictureBox5);
             Controls.Add(userActive);
             Controls.Add(titulo);
@@ -444,6 +470,7 @@
             Controls.Add(panel7);
             Controls.Add(panel1);
             FormBorderStyle = FormBorderStyle.None;
+            Margin = new Padding(3, 2, 3, 2);
             Name = "CPanel";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "CPanel";

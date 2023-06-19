@@ -120,14 +120,14 @@ namespace ProyectoProgramacionIIAPI.Controllers
         [HttpPut("{id:int}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> UpdateUser(int id, [FromBody] UserUpdateDto userDTO)
+        public async Task<IActionResult> UpdateUser(int id, [FromBody] UserUpdateDto userDto)
         {
-            if (userDTO == null || id != userDTO.UserId)
+            if (userDto == null || id != userDto.UserId)
             {
                 return BadRequest();
             }
 
-            User modelo = _mapper.Map<User>(userDTO);
+            User modelo = _mapper.Map<User>(userDto);
 
             await _userRepo.Update(modelo);
 

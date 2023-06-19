@@ -126,14 +126,14 @@ namespace ProyectoProgramacionIIAPI.Controllers
         [HttpPut("{id:int}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> UpdateProduct(int id, [FromBody] UpdateProductDto productDTO)
+        public async Task<IActionResult> UpdateProduct(int id, [FromBody] UpdateProductDto productDto)
         {
-            if (productDTO == null || id != productDTO.ProductId)
+            if (productDto == null || id != productDto.ProductId)
             {
                 return BadRequest();
             }
 
-            Product modelo = _mapper.Map<Product>(productDTO);
+            Product modelo = _mapper.Map<Product>(productDto);
 
             await _productRepo.Update(modelo);
 

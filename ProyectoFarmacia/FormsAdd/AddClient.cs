@@ -34,8 +34,7 @@ namespace ProyectoFarmacia.FormsAdd
             {
                 var serializedStudent = JsonConvert.SerializeObject(createClientDtofarm);
                 var content = new StringContent(serializedStudent, Encoding.UTF8, "application/json");
-               //CAMBIAR LINK DE ESTA VAINA
-                var response = await client.PostAsync("https://localhost:7159/api/Users", content);
+                var response = await client.PostAsync("https://localhost:7159/api/Client", content);
                 if (response.IsSuccessStatusCode)
                 {
                     MessageBox.Show("Cliente agregado");

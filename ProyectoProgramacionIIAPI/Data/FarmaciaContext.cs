@@ -27,8 +27,8 @@ namespace ProyectoProgramacionIIAPI.Data
                        ProductName = "Paracetamol",
                        ProductDescription = "No c",
                        CategoryId = 1,
-                       DateOfCreation = DateTime.Now,
-                       ProviderId = 1
+                       DateOfCreation = DateTime.Now
+                 
                    });
 
             modelBuilder.Entity<Category>().HasData(
@@ -36,7 +36,7 @@ namespace ProyectoProgramacionIIAPI.Data
                  {
                      CategoryId = 1,
                      CategoryName = "Dolor",
-                     DateOfCreation = DateTime.Now,
+                     DateOfCreation = DateTime.Now
                  });
 
             modelBuilder.Entity<Provider>().HasData(
@@ -47,7 +47,7 @@ namespace ProyectoProgramacionIIAPI.Data
                     ProviderName = "Laboratorios Ramos",
                     ProviderEmail = "labramos@gmail.com.ni",
                     ProviderPhone = 18002020,
-                    ProviderDate = DateTime.Now,
+                    ProviderDate = DateTime.Now
                 });
 
             modelBuilder.Entity<Client>().HasData(
