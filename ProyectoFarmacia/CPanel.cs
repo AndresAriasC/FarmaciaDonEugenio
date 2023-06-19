@@ -37,12 +37,23 @@ namespace ProyectoFarmacia
 
         private void Clear()
         {
-            campoId.Text = "";
-            campoName.Text = "";
-            campoCodigo.Text = "";
-            campoCategoia.Text = "";
-            campoDescripcion.Text = "";
+            campoId.Text = string.Empty;
+            campoCodigo.Text = string.Empty;
+            campoName.Text = string.Empty;
+            campoDescripcion.Text = string.Empty;
+            campoCategoia.Text = string.Empty;
+            campotxt6.Text = string.Empty;
+            campotxt7.Text = string.Empty;
+            campotxt8.Text = string.Empty;
             id = 0;
+        }
+        private void Desabilitar()
+        {
+            campoId.Enabled = false;
+            campoName.Enabled = false;
+            campoCodigo.Enabled = false;
+            campoDescripcion.Enabled = false;
+            campoCategoia.Enabled = false;
         }
         private void btnSalir_Click(object sender, EventArgs e)
         {
@@ -115,11 +126,20 @@ namespace ProyectoFarmacia
         {
             if (rbProductos.Checked == true)
             {
+                lbl1.Text = "Product Id";
+                lbl2.Text = "Product Name";
+                lbl3.Text = "Product Code";
+                lbl4.Text = "Product Desc.";
+                lbl5.Text = "Product Category";
                 tituloUrl.Text = "/Productos";
-                GetAllProducts();
-            }
-            else if (rbEmpleados.Checked == true)
-            {
+                lbl6.Text = "Empty";
+                lbl7.Text = "Empty";
+                lbl8.Text = "Empty";
+                campotxt6.Enabled = false;
+                campotxt7.Enabled = false;
+                campotxt8.Enabled = false;
+
+                Clear();
                 GetAllProducts();
             }
         }
@@ -129,10 +149,19 @@ namespace ProyectoFarmacia
             if (rbEmpleados.Checked == true)
             {
                 tituloUrl.Text = "/Empleados";
-                GetAllUsers();
-            }
-            else if (rbEmpleados.Checked == true)
-            {
+                lbl1.Text = "User Id";
+                lbl2.Text = "User Name";
+                lbl3.Text = "User Code";
+                lbl4.Text = "User Email";
+                lbl5.Text = "User Phone";
+                lbl6.Text = "User LastName";
+                lbl7.Text = "User Salary";
+                lbl8.Text = "User Addres";
+                campotxt6.Enabled = true;
+                campotxt7.Enabled = true;
+                campotxt8.Enabled = true;
+
+                Clear();
                 GetAllUsers();
             }
         }
@@ -160,11 +189,23 @@ namespace ProyectoFarmacia
         {
             foreach (DataGridViewRow row in cargaDatos.Rows)
             {
-                if (row.Index == e.RowIndex)
+                if (rbProductos.Checked == true)
                 {
-                    id = int.Parse(row.Cells[0].Value?.ToString());
-                    GetProductById(id);
+                    if (row.Index == e.RowIndex)
+                    {
+                        id = int.Parse(row.Cells[0].Value?.ToString());
+                        GetProductById(id);
+                    }
                 }
+                else if (rbEmpleados.Checked == true)
+                {
+                    if (row.Index == e.RowIndex)
+                    {
+                        id = int.Parse(row.Cells[0].Value?.ToString());
+                        GetUserById(id);
+                    }
+                }
+
             }
         }
 
@@ -191,6 +232,32 @@ namespace ProyectoFarmacia
                 }
             }
         }
+        private async void GetUserById(int id)
+        {
+
+            using (var client = new HttpClient())
+            {
+                var response = await client.GetAsync(String.Format("{0}/{1}",
+                    "https://localhost:7159/api/Users", id));
+                if (response.IsSuccessStatusCode)
+                {
+                    var data = await response.Content.ReadAsStringAsync();
+                    UserDtofarm userDtofarm = JsonConvert.DeserializeObject<UserDtofarm>(data);
+                    campoId.Text = userDtofarm.UserId.ToString();
+                    campoCodigo.Text = userDtofarm.EmployeeCode.ToString();
+                    campoName.Text = userDtofarm.UserName.ToString();
+                    campoDescripcion.Text = userDtofarm.Email.ToString();
+                    campoCategoia.Text = userDtofarm.Phone.ToString();
+                    campotxt6.Text = userDtofarm.LastName.ToString();
+                    campotxt7.Text = userDtofarm.Salary.ToString();
+                    campotxt8.Text = userDtofarm.Adress.ToString();
+                }
+                else
+                {
+                    MessageBox.Show($"No se puede obtener el usuario: {response.StatusCode}");
+                }
+            }
+        }
 
         private void btnModificar_Click(object sender, EventArgs e)
         {
@@ -199,6 +266,47 @@ namespace ProyectoFarmacia
                 if (id != 0)
                 {
                     UpdateProduct();
+                }
+            }
+            else if (rbEmpleados.Checked == true)
+            {
+                if (id != 0)
+                {
+                    UpdateEmpleado();
+                }
+            }
+        }
+
+        private async void UpdateEmpleado()
+        {
+            UserUpdateDtofarm userDto = new UserUpdateDtofarm();
+            userDto.UserId = id;
+            userDto.EmployeeCode = campoCodigo.Text;
+            userDto.UserName = campoName.Text;
+            userDto.LastName = campotxt6.Text;
+            userDto.Email = campoDescripcion.Text;
+            userDto.Phone = campoCategoia.Text;
+            userDto.Adress = campotxt8.Text;
+            userDto.Salary = Convert.ToInt32(campotxt7.Text);
+
+
+
+            using (var client = new HttpClient())
+            {
+                var user = JsonConvert.SerializeObject(userDto);
+                var content = new StringContent(user, Encoding.UTF8, "application/json");
+                var response = await client.PutAsync(String.Format("{0}/{1}",
+                    "https://localhost:7159/api/Users", id), content);
+
+                if (response.IsSuccessStatusCode)
+                {
+
+                    MessageBox.Show("Usuario actualizado");
+                    GetAllUsers();
+                }
+                else
+                {
+                    MessageBox.Show($"Error al actualizar el Usuario: {response.StatusCode}");
                 }
             }
         }
@@ -215,16 +323,21 @@ namespace ProyectoFarmacia
 
             using (var client = new HttpClient())
             {
-                var student = JsonConvert.SerializeObject(productDto);
-                var content = new StringContent(student, Encoding.UTF8, "application/json");
+                var product = JsonConvert.SerializeObject(productDto);
+                var content = new StringContent(product, Encoding.UTF8, "application/json");
                 var response = await client.PutAsync(String.Format("{0}/{1}",
                     "http://localhost:5226/api/Products", id), content);
 
                 if (response.IsSuccessStatusCode)
-                    MessageBox.Show("Producto actualizado");
+                {
 
+                    MessageBox.Show("Producto actualizado");
+                    GetAllProducts();
+                }
                 else
+                {
                     MessageBox.Show($"Error al actualizar el Producto: {response.StatusCode}");
+                }
             }
         }
 
@@ -237,7 +350,30 @@ namespace ProyectoFarmacia
                     DeleteProduct();
                 }
             }
+            else if (rbEmpleados.Checked == true)
+            {
+                if (id != 0)
+                {
+                    DeleteEmpleado();
+                }
+            }
 
+        }
+
+        private async void DeleteEmpleado()
+        {
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("https://localhost:7159/api/Users");
+                var response = await client.DeleteAsync(String.Format("{0}/{1}",
+                    "https://localhost:7159/api/Users", id));
+                if (response.IsSuccessStatusCode)
+                    MessageBox.Show("Empleado eliminado con éxito");
+                else
+                    MessageBox.Show($"No se pudo eliminar el empleado: {response.StatusCode}");
+            }
+            Clear();
+            GetAllUsers();
         }
 
         private async void DeleteProduct()

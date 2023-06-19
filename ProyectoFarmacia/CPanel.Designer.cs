@@ -63,13 +63,19 @@
             campoName = new TextBox();
             campoDescripcion = new TextBox();
             campoCategoia = new TextBox();
-            label3 = new Label();
-            label4 = new Label();
-            label5 = new Label();
-            label6 = new Label();
+            lbl3 = new Label();
+            lbl2 = new Label();
+            lbl4 = new Label();
+            lbl5 = new Label();
             panel5 = new Panel();
+            campotxt8 = new TextBox();
+            lbl8 = new Label();
+            lbl7 = new Label();
+            campotxt7 = new TextBox();
+            campotxt6 = new TextBox();
+            lbl6 = new Label();
             campoId = new TextBox();
-            label8 = new Label();
+            lbl1 = new Label();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -452,106 +458,163 @@
             // 
             // campoCodigo
             // 
-            campoCodigo.Location = new Point(77, 40);
+            campoCodigo.Location = new Point(122, 40);
             campoCodigo.Name = "campoCodigo";
             campoCodigo.Size = new Size(125, 27);
             campoCodigo.TabIndex = 20;
             // 
             // campoName
             // 
-            campoName.Location = new Point(210, 6);
+            campoName.Location = new Point(302, 6);
             campoName.Name = "campoName";
-            campoName.Size = new Size(162, 27);
+            campoName.Size = new Size(146, 27);
             campoName.TabIndex = 21;
             // 
             // campoDescripcion
             // 
-            campoDescripcion.Location = new Point(106, 75);
+            campoDescripcion.Location = new Point(122, 78);
             campoDescripcion.Name = "campoDescripcion";
             campoDescripcion.Size = new Size(266, 27);
             campoDescripcion.TabIndex = 22;
             // 
             // campoCategoia
             // 
-            campoCategoia.Location = new Point(291, 40);
+            campoCategoia.Location = new Point(380, 40);
             campoCategoia.Name = "campoCategoia";
             campoCategoia.Size = new Size(81, 27);
             campoCategoia.TabIndex = 23;
             // 
-            // label3
+            // lbl3
             // 
-            label3.AutoSize = true;
-            label3.ForeColor = Color.FromArgb(64, 64, 64);
-            label3.Location = new Point(13, 43);
-            label3.Name = "label3";
-            label3.Size = new Size(58, 20);
-            label3.TabIndex = 26;
-            label3.Text = "Codigo";
+            lbl3.AutoSize = true;
+            lbl3.ForeColor = Color.FromArgb(64, 64, 64);
+            lbl3.Location = new Point(13, 45);
+            lbl3.Name = "lbl3";
+            lbl3.Size = new Size(63, 20);
+            lbl3.TabIndex = 26;
+            lbl3.Text = "campo3";
             // 
-            // label4
+            // lbl2
             // 
-            label4.AutoSize = true;
-            label4.ForeColor = Color.FromArgb(64, 64, 64);
-            label4.Location = new Point(146, 9);
-            label4.Name = "label4";
-            label4.Size = new Size(49, 20);
-            label4.TabIndex = 27;
-            label4.Text = "Name";
+            lbl2.AutoSize = true;
+            lbl2.ForeColor = Color.FromArgb(64, 64, 64);
+            lbl2.Location = new Point(181, 11);
+            lbl2.Name = "lbl2";
+            lbl2.Size = new Size(63, 20);
+            lbl2.TabIndex = 27;
+            lbl2.Text = "campo2";
             // 
-            // label5
+            // lbl4
             // 
-            label5.AutoSize = true;
-            label5.ForeColor = Color.FromArgb(64, 64, 64);
-            label5.Location = new Point(13, 78);
-            label5.Name = "label5";
-            label5.Size = new Size(87, 20);
-            label5.TabIndex = 28;
-            label5.Text = "Descripcion";
+            lbl4.AutoSize = true;
+            lbl4.ForeColor = Color.FromArgb(64, 64, 64);
+            lbl4.Location = new Point(13, 78);
+            lbl4.Name = "lbl4";
+            lbl4.Size = new Size(63, 20);
+            lbl4.TabIndex = 28;
+            lbl4.Text = "campo4";
             // 
-            // label6
+            // lbl5
             // 
-            label6.AutoSize = true;
-            label6.ForeColor = Color.FromArgb(64, 64, 64);
-            label6.Location = new Point(211, 43);
-            label6.Name = "label6";
-            label6.Size = new Size(74, 20);
-            label6.TabIndex = 29;
-            label6.Text = "Categoria";
+            lbl5.AutoSize = true;
+            lbl5.ForeColor = Color.FromArgb(64, 64, 64);
+            lbl5.Location = new Point(255, 46);
+            lbl5.Name = "lbl5";
+            lbl5.Size = new Size(63, 20);
+            lbl5.TabIndex = 29;
+            lbl5.Text = "campo5";
             // 
             // panel5
             // 
             panel5.BackColor = Color.Silver;
+            panel5.Controls.Add(campotxt8);
+            panel5.Controls.Add(lbl8);
+            panel5.Controls.Add(lbl7);
+            panel5.Controls.Add(campotxt7);
+            panel5.Controls.Add(campotxt6);
+            panel5.Controls.Add(lbl6);
             panel5.Controls.Add(campoId);
-            panel5.Controls.Add(label8);
+            panel5.Controls.Add(lbl1);
             panel5.Controls.Add(campoCodigo);
             panel5.Controls.Add(campoName);
-            panel5.Controls.Add(label6);
-            panel5.Controls.Add(label4);
+            panel5.Controls.Add(lbl5);
+            panel5.Controls.Add(lbl2);
             panel5.Controls.Add(campoCategoia);
             panel5.Controls.Add(campoDescripcion);
-            panel5.Controls.Add(label5);
-            panel5.Controls.Add(label3);
+            panel5.Controls.Add(lbl4);
+            panel5.Controls.Add(lbl3);
             panel5.Location = new Point(302, 104);
             panel5.Name = "panel5";
-            panel5.Size = new Size(390, 115);
+            panel5.Size = new Size(737, 115);
             panel5.TabIndex = 31;
+            // 
+            // campotxt8
+            // 
+            campotxt8.Location = new Point(571, 78);
+            campotxt8.Name = "campotxt8";
+            campotxt8.Size = new Size(146, 27);
+            campotxt8.TabIndex = 37;
+            // 
+            // lbl8
+            // 
+            lbl8.AutoSize = true;
+            lbl8.ForeColor = Color.FromArgb(64, 64, 64);
+            lbl8.Location = new Point(441, 79);
+            lbl8.Name = "lbl8";
+            lbl8.Size = new Size(63, 20);
+            lbl8.TabIndex = 38;
+            lbl8.Text = "campo8";
+            // 
+            // lbl7
+            // 
+            lbl7.AutoSize = true;
+            lbl7.ForeColor = Color.FromArgb(64, 64, 64);
+            lbl7.Location = new Point(527, 45);
+            lbl7.Name = "lbl7";
+            lbl7.Size = new Size(63, 20);
+            lbl7.TabIndex = 36;
+            lbl7.Text = "campo7";
+            // 
+            // campotxt7
+            // 
+            campotxt7.Location = new Point(636, 45);
+            campotxt7.Name = "campotxt7";
+            campotxt7.Size = new Size(81, 27);
+            campotxt7.TabIndex = 35;
+            // 
+            // campotxt6
+            // 
+            campotxt6.Location = new Point(571, 10);
+            campotxt6.Name = "campotxt6";
+            campotxt6.Size = new Size(146, 27);
+            campotxt6.TabIndex = 33;
+            // 
+            // lbl6
+            // 
+            lbl6.AutoSize = true;
+            lbl6.ForeColor = Color.FromArgb(64, 64, 64);
+            lbl6.Location = new Point(454, 10);
+            lbl6.Name = "lbl6";
+            lbl6.Size = new Size(63, 20);
+            lbl6.TabIndex = 34;
+            lbl6.Text = "campo6";
             // 
             // campoId
             // 
-            campoId.Location = new Point(77, 6);
+            campoId.Location = new Point(122, 7);
             campoId.Name = "campoId";
             campoId.Size = new Size(53, 27);
             campoId.TabIndex = 31;
             // 
-            // label8
+            // lbl1
             // 
-            label8.AutoSize = true;
-            label8.ForeColor = Color.FromArgb(64, 64, 64);
-            label8.Location = new Point(13, 6);
-            label8.Name = "label8";
-            label8.Size = new Size(22, 20);
-            label8.TabIndex = 32;
-            label8.Text = "Id";
+            lbl1.AutoSize = true;
+            lbl1.ForeColor = Color.FromArgb(64, 64, 64);
+            lbl1.Location = new Point(13, 6);
+            lbl1.Name = "lbl1";
+            lbl1.Size = new Size(63, 20);
+            lbl1.TabIndex = 32;
+            lbl1.Text = "campo1";
             // 
             // CPanel
             // 
@@ -632,12 +695,18 @@
         private TextBox campoDescripcion;
         private TextBox campoCategoia;
         private TextBox textBox5;
-        private Label label3;
-        private Label label4;
-        private Label label5;
-        private Label label6;
+        private Label lbl3;
+        private Label lbl2;
+        private Label lbl4;
+        private Label lbl5;
         private Panel panel5;
         private TextBox campoId;
-        private Label label8;
+        private Label lbl1;
+        private Label lbl7;
+        private TextBox campotxt7;
+        private TextBox campotxt6;
+        private Label lbl6;
+        private TextBox campotxt8;
+        private Label lbl8;
     }
 }
