@@ -37,7 +37,6 @@
             txtEmpPhone = new TextBox();
             txtEmpAdress = new TextBox();
             txtEmpSalary = new TextBox();
-            dateTimePicker1 = new DateTimePicker();
             SuspendLayout();
             // 
             // label1
@@ -117,21 +116,11 @@
             txtEmpSalary.Size = new Size(114, 27);
             txtEmpSalary.TabIndex = 8;
             // 
-            // dateTimePicker1
-            // 
-            dateTimePicker1.Format = DateTimePickerFormat.Short;
-            dateTimePicker1.Location = new Point(224, 283);
-            dateTimePicker1.Margin = new Padding(3, 4, 3, 4);
-            dateTimePicker1.Name = "dateTimePicker1";
-            dateTimePicker1.Size = new Size(125, 27);
-            dateTimePicker1.TabIndex = 9;
-            // 
             // AddUser
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(554, 451);
-            Controls.Add(dateTimePicker1);
             Controls.Add(txtEmpSalary);
             Controls.Add(txtEmpAdress);
             Controls.Add(txtEmpPhone);
@@ -158,6 +147,5 @@
         private TextBox txtEmpPhone;
         private TextBox txtEmpAdress;
         private TextBox txtEmpSalary;
-        private DateTimePicker dateTimePicker1;
     }
 }

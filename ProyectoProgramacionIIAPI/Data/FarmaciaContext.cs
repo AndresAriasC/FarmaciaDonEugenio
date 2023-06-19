@@ -24,16 +24,14 @@ namespace ProyectoProgramacionIIAPI.Data
                        ProductCode = "121",
                        ProductName = "Paracetamol",
                        ProductDescription = "No c",
-                       CategoryId = 1,
-                       DateOfCreation = DateTime.Now,
+                       CategoryId = 1
                    });
 
             modelBuilder.Entity<Category>().HasData(
                  new Category()
                  {
                      CategoryId = 1,
-                     CategoryName = "Dolor",
-                     DateOfCreation = DateTime.Now,
+                     CategoryName = "Dolor"
                  });
 
 

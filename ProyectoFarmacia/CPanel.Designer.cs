@@ -422,6 +422,7 @@
             btnEliminar.TabIndex = 17;
             btnEliminar.Text = "ELIMINAR";
             btnEliminar.UseVisualStyleBackColor = false;
+            btnEliminar.Click += btnEliminar_Click;
             // 
             // btnLimpiar
             // 
@@ -435,6 +436,7 @@
             btnLimpiar.TabIndex = 18;
             btnLimpiar.Text = "LIMPIAR";
             btnLimpiar.UseVisualStyleBackColor = false;
+            btnLimpiar.Click += btnLimpiar_Click;
             // 
             // titulo
             // 
@@ -459,14 +461,14 @@
             // 
             campoName.Location = new Point(210, 6);
             campoName.Name = "campoName";
-            campoName.Size = new Size(217, 27);
+            campoName.Size = new Size(162, 27);
             campoName.TabIndex = 21;
             // 
             // campoDescripcion
             // 
             campoDescripcion.Location = new Point(106, 75);
             campoDescripcion.Name = "campoDescripcion";
-            campoDescripcion.Size = new Size(321, 27);
+            campoDescripcion.Size = new Size(266, 27);
             campoDescripcion.TabIndex = 22;
             // 
             // campoCategoia
@@ -531,7 +533,7 @@
             panel5.Controls.Add(label3);
             panel5.Location = new Point(302, 104);
             panel5.Name = "panel5";
-            panel5.Size = new Size(447, 115);
+            panel5.Size = new Size(390, 115);
             panel5.TabIndex = 31;
             // 
             // campoId

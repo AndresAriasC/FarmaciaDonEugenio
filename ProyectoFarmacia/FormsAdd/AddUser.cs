@@ -29,7 +29,6 @@ namespace ProyectoFarmacia.FormsAdd
             userCreateDtofarm.Phone = txtEmpPhone.Text;
             userCreateDtofarm.Adress = txtEmpAdress.Text;
             userCreateDtofarm.Salary = Convert.ToDouble(txtEmpSalary.Text);
-            userCreateDtofarm.DateOfCreation = Convert.ToDateTime(dateTimePicker1.Text);
 
             using (var client = new HttpClient())
             {

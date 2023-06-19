@@ -34,6 +34,16 @@ namespace ProyectoFarmacia
         {
             userActive.Text = UserName;
         }
+
+        private void Clear()
+        {
+            campoId.Text = "";
+            campoName.Text = "";
+            campoCodigo.Text = "";
+            campoCategoia.Text = "";
+            campoDescripcion.Text = "";
+            id = 0;
+        }
         private void btnSalir_Click(object sender, EventArgs e)
         {
             Application.Exit();
@@ -152,7 +162,7 @@ namespace ProyectoFarmacia
             {
                 if (row.Index == e.RowIndex)
                 {
-                    id = int.Parse(row.Cells[0].Value.ToString());
+                    id = int.Parse(row.Cells[0].Value?.ToString());
                     GetProductById(id);
                 }
             }
@@ -160,9 +170,7 @@ namespace ProyectoFarmacia
 
         private async void GetProductById(int id)
         {
-            string fechaTexto = "18/06/2023";
-            string formatoFecha = "dd/MM/yyyy";
-            DateTime fecha;
+
             using (var client = new HttpClient())
             {
                 var response = await client.GetAsync(String.Format("{0}/{1}",
@@ -204,6 +212,7 @@ namespace ProyectoFarmacia
             productDto.ProductDescription = campoDescripcion.Text;
             productDto.CategoryId = Convert.ToInt32(campoCategoia.Text);
 
+
             using (var client = new HttpClient())
             {
                 var student = JsonConvert.SerializeObject(productDto);
@@ -218,5 +227,39 @@ namespace ProyectoFarmacia
                     MessageBox.Show($"Error al actualizar el Producto: {response.StatusCode}");
             }
         }
+
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            if (rbProductos.Checked == true)
+            {
+                if (id != 0)
+                {
+                    DeleteProduct();
+                }
+            }
+
+        }
+
+        private async void DeleteProduct()
+        {
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("http://localhost:5226/api/Products");
+                var response = await client.DeleteAsync(String.Format("{0}/{1}",
+                    "http://localhost:5226/api/Products", id));
+                if (response.IsSuccessStatusCode)
+                    MessageBox.Show("Producto eliminado con éxito");
+                else
+                    MessageBox.Show($"No se pudo eliminar el producto: {response.StatusCode}");
+            }
+            Clear();
+            GetAllProducts();
+        }
+
+        private void btnLimpiar_Click(object sender, EventArgs e)
+        {
+            Clear();
+        }
+
     }
 }

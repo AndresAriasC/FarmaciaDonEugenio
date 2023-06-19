@@ -7,6 +7,5 @@ namespace ProyectoProgramacionIIAPI.Models.Dto
         [Required]
         [StringLength(50)]
         public string? CategoryName { get; set; }
-        public DateTime DateOfCreation { get; set; }
     }
 }

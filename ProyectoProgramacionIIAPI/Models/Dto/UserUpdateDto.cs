@@ -20,6 +20,5 @@ namespace ProyectoProgramacionIIAPI.Models.Dto
         public string Adress { get; set; }
         [Required]
         public double Salary { get; set; }
-        public DateTime DateOfCreation { get; set; }
     }
 }

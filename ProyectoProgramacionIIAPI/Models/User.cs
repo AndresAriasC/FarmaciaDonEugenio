@@ -21,6 +21,5 @@ namespace ProyectoProgramacionIIAPI.Models
         public string Adress { get; set; }
         [Required]
         public double Salary { get; set; }
-        public DateTime DateOfCreation { get; set; }
     }
 }
