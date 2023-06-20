@@ -47,20 +47,12 @@ namespace ProyectoFarmacia
             campotxt8.Text = string.Empty;
             id = 0;
         }
-        private void Desabilitar()
-        {
-            campoId.Enabled = false;
-            campoName.Enabled = false;
-            campoCodigo.Enabled = false;
-            campoDescripcion.Enabled = false;
-            campoCategoia.Enabled = false;
-        }
         private void btnSalir_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }
 
-        /// ///////////////////////////////////////////////////////////////////////////////////////////
+        /// /////////////////////////////////////////TODOS LOS GET ALLS//////////////////////////////////////////////////
 
         //Llama a todos lo productos de la API productos
         private async void GetAllProducts()
@@ -157,8 +149,8 @@ namespace ProyectoFarmacia
             }
         }
 
-        /// ///////////////////////////////////////////////////////////////////////////////////////////
-     
+        /// ///////////////////////////////////////TERMINAN LOS GET ALLS////////////////////////////////////////////////////
+        /// ///////////////////////////////////////EMPIEZAN LOS BOTONES DE LA IZQUIERDA////////////////////////////////////////////////////
         private void btnProductos_Click(object sender, EventArgs e)
         {
             if (rbProductos.Checked == true)
@@ -172,6 +164,9 @@ namespace ProyectoFarmacia
                 lbl6.Text = "Empty";
                 lbl7.Text = "Empty";
                 lbl8.Text = "Empty";
+                campoCodigo.Enabled = true;
+                campoDescripcion.Enabled = true;
+                campoCategoia.Enabled = true;
                 campotxt6.Enabled = false;
                 campotxt7.Enabled = false;
                 campotxt8.Enabled = false;
@@ -182,7 +177,7 @@ namespace ProyectoFarmacia
         }
         private void btnCategory_Click(object sender, EventArgs e)
         {
-            if(rbCategory.Checked == true)
+            if (rbCategory.Checked == true)
             {
                 tituloUrl.Text = "/Categorias";
                 lbl1.Text = "Category Id";
@@ -226,10 +221,9 @@ namespace ProyectoFarmacia
             }
         }
 
-        /// ///////////////////////////////////////////////////////////////////////////////////////////
+        /// /////////////////////////////////TERMINAN LOS BOTONES DE LA IZQUIERDA//////////////////////////////////////////////////////////
 
-
-        //se encarga de agregar dependiendo de que boton esta seleccionado
+        /// /////////////////////////////////EMPIEZAN LOS BOTONES DE LA DERECHA//////////////////////////////////////////////////////////
         private void btnAgregar_Click(object sender, EventArgs e)
         {
             if (rbProductos.Checked == true)
@@ -251,9 +245,170 @@ namespace ProyectoFarmacia
                 GetAllCategories();
             }
         }
-        /// ///////////////////////////////////////////////////////////////////////////////////////////
-        //se encarga de modificar dependiendo de que opcion este seleccionada
 
+        private void btnModificar_Click(object sender, EventArgs e)
+        {
+            if (rbProductos.Checked == true)
+            {
+                if (id != 0)
+                {
+                    UpdateProduct();
+                }
+            }
+            else if (rbEmpleados.Checked == true)
+            {
+                if (id != 0)
+                {
+                    UpdateEmpleado();
+                }
+            }
+            else if (rbCategory.Checked == true)
+            {
+                if (id != 0)
+                {
+                    UpdateCategory();
+                }
+            }
+        }
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            if (rbProductos.Checked == true)
+            {
+                if (id != 0)
+                {
+                    DeleteProduct();
+                }
+            }
+            else if (rbEmpleados.Checked == true)
+            {
+                if (id != 0)
+                {
+                    DeleteEmpleado();
+                }
+            }
+
+        }
+        private async void UpdateProduct()
+        {
+            ProductUpdateDtofarm productDto = new ProductUpdateDtofarm();
+            productDto.ProductId = id;
+            productDto.ProductCode = campoCodigo.Text;
+            productDto.ProductName = campoName.Text;
+            productDto.ProductDescription = campoDescripcion.Text;
+            productDto.CategoryId = Convert.ToInt32(campoCategoia.Text);
+
+
+            using (var client = new HttpClient())
+            {
+                var product = JsonConvert.SerializeObject(productDto);
+                var content = new StringContent(product, Encoding.UTF8, "application/json");
+                var response = await client.PutAsync(String.Format("{0}/{1}",
+                    "http://localhost:5226/api/Products", id), content);
+
+                if (response.IsSuccessStatusCode)
+                {
+
+                    MessageBox.Show("Producto actualizado");
+                    GetAllProducts();
+                }
+                else
+                {
+                    MessageBox.Show($"Error al actualizar el Producto: {response.StatusCode}");
+                }
+            }
+        }
+        private async void UpdateEmpleado()
+        {
+            UserUpdateDtofarm userDto = new UserUpdateDtofarm();
+            userDto.UserId = id;
+            userDto.EmployeeCode = campoCodigo.Text;
+            userDto.UserName = campoName.Text;
+            userDto.LastName = campotxt6.Text;
+            userDto.Email = campoDescripcion.Text;
+            userDto.Phone = campoCategoia.Text;
+            userDto.Adress = campotxt8.Text;
+            userDto.Salary = Convert.ToInt32(campotxt7.Text);
+
+
+
+            using (var client = new HttpClient())
+            {
+                var user = JsonConvert.SerializeObject(userDto);
+                var content = new StringContent(user, Encoding.UTF8, "application/json");
+                var response = await client.PutAsync(String.Format("{0}/{1}",
+                    "https://localhost:7159/api/Users", id), content);
+
+                if (response.IsSuccessStatusCode)
+                {
+
+                    MessageBox.Show("Usuario actualizado");
+                    GetAllUsers();
+                }
+                else
+                {
+                    MessageBox.Show($"Error al actualizar el Usuario: {response.StatusCode}");
+                }
+            }
+        }
+        private async void UpdateCategory()
+        {
+            UpdateCategoryDtoFarm updateCategoryDtoFarm = new UpdateCategoryDtoFarm();
+            updateCategoryDtoFarm.CategoryName = campoName.Text;
+            updateCategoryDtoFarm.CategoryId = id;
+
+            using (var client = new HttpClient())
+            {
+                var category = JsonConvert.SerializeObject(updateCategoryDtoFarm);
+                var content = new StringContent(category, Encoding.UTF8, "application/json");
+                var response = await client.PutAsync(String.Format("{0}/{1}",
+                    "https://localhost:7159/api/Category", id), content);
+
+                if (response.IsSuccessStatusCode)
+                {
+
+                    MessageBox.Show("Categoria actualizada");
+                    GetAllCategories();
+                }
+                else
+                {
+                    MessageBox.Show($"Error al actualizar la categoria: {response.StatusCode}");
+                }
+            }
+        }
+        private async void DeleteEmpleado()
+        {
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("https://localhost:7159/api/Users");
+                var response = await client.DeleteAsync(String.Format("{0}/{1}",
+                    "https://localhost:7159/api/Users", id));
+                if (response.IsSuccessStatusCode)
+                    MessageBox.Show("Empleado eliminado con éxito");
+                else
+                    MessageBox.Show($"No se pudo eliminar el empleado: {response.StatusCode}");
+            }
+            Clear();
+            GetAllUsers();
+        }
+        private async void DeleteProduct()
+        {
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("http://localhost:5226/api/Products");
+                var response = await client.DeleteAsync(String.Format("{0}/{1}",
+                    "http://localhost:5226/api/Products", id));
+                if (response.IsSuccessStatusCode)
+                    MessageBox.Show("Producto eliminado con éxito");
+                else
+                    MessageBox.Show($"No se pudo eliminar el producto: {response.StatusCode}");
+            }
+            Clear();
+            GetAllProducts();
+        }
+
+        /// ///////////////////////////////////////////////////////////////////////////////////////////
+
+        /// /////////////////////////////////CARGA EL DATAGID//////////////////////////////////////////////////////////
         private void cargaDatos_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             foreach (DataGridViewRow row in cargaDatos.Rows)
@@ -274,9 +429,9 @@ namespace ProyectoFarmacia
                         GetUserById(id);
                     }
                 }
-                else if (rbCategory.Checked== true)
+                else if (rbCategory.Checked == true)
                 {
-                    if(row.Index == e.RowIndex)
+                    if (row.Index == e.RowIndex)
                     {
                         id = int.Parse(row.Cells[0].Value?.ToString());
                         GetCategoryById(id);
@@ -286,8 +441,9 @@ namespace ProyectoFarmacia
 
             }
         }
+        /// /////////////////////////////////CARGA EL DATAGID//////////////////////////////////////////////////////////
 
-        /// ///////////////////////////////////////////////////////////////////////////////////////////
+        /// /////////////////////////////OBTIENE POR ID////////////////////////////////////////////
         private async void GetProductById(int id)
         {
 
@@ -358,203 +514,24 @@ namespace ProyectoFarmacia
             }
         }
 
-        /// ///////////////////////////////////////////////////////////////////////////////////////////
-
-        private void btnModificar_Click(object sender, EventArgs e)
-        {
-            if (rbProductos.Checked == true)
-            {
-                if (id != 0)
-                {
-                    UpdateProduct();
-                }
-            }
-            else if (rbEmpleados.Checked == true)
-            {
-                if (id != 0)
-                {
-                    UpdateEmpleado();
-                }
-            }
-            else if (rbCategory.Checked == true)
-            {
-                if (id != 0)
-                {
-                    UpdateCategory();
-                }
-            }
-        }
-
-        private async void UpdateEmpleado()
-        {
-            UserUpdateDtofarm userDto = new UserUpdateDtofarm();
-            userDto.UserId = id;
-            userDto.EmployeeCode = campoCodigo.Text;
-            userDto.UserName = campoName.Text;
-            userDto.LastName = campotxt6.Text;
-            userDto.Email = campoDescripcion.Text;
-            userDto.Phone = campoCategoia.Text;
-            userDto.Adress = campotxt8.Text;
-            userDto.Salary = Convert.ToInt32(campotxt7.Text);
-
-
-
-            using (var client = new HttpClient())
-            {
-                var user = JsonConvert.SerializeObject(userDto);
-                var content = new StringContent(user, Encoding.UTF8, "application/json");
-                var response = await client.PutAsync(String.Format("{0}/{1}",
-                    "https://localhost:7159/api/Users", id), content);
-
-                if (response.IsSuccessStatusCode)
-                {
-
-                    MessageBox.Show("Usuario actualizado");
-                    GetAllUsers();
-                }
-                else
-                {
-                    MessageBox.Show($"Error al actualizar el Usuario: {response.StatusCode}");
-                }
-            }
-        }
-
-        private async void UpdateProduct()
-        {
-            ProductUpdateDtofarm productDto = new ProductUpdateDtofarm();
-            productDto.ProductId = id;
-            productDto.ProductCode = campoCodigo.Text;
-            productDto.ProductName = campoName.Text;
-            productDto.ProductDescription = campoDescripcion.Text;
-            productDto.CategoryId = Convert.ToInt32(campoCategoia.Text);
-
-
-            using (var client = new HttpClient())
-            {
-                var product = JsonConvert.SerializeObject(productDto);
-                var content = new StringContent(product, Encoding.UTF8, "application/json");
-                var response = await client.PutAsync(String.Format("{0}/{1}",
-                    "http://localhost:5226/api/Products", id), content);
-
-                if (response.IsSuccessStatusCode)
-                {
-
-                    MessageBox.Show("Producto actualizado");
-                    GetAllProducts();
-                }
-                else
-                {
-                    MessageBox.Show($"Error al actualizar el Producto: {response.StatusCode}");
-                }
-            }
-        }
-
-        private async void UpdateCategory()
-        {
-            UpdateCategoryDtoFarm updateCategoryDtoFarm = new UpdateCategoryDtoFarm();
-            updateCategoryDtoFarm.CategoryName = campoName.Text;
-            updateCategoryDtoFarm.CategoryId = id;
-
-            using (var client = new HttpClient())
-            {
-                var category = JsonConvert.SerializeObject(updateCategoryDtoFarm);
-                var content = new StringContent(category, Encoding.UTF8, "application/json");
-                var response = await client.PutAsync(String.Format("{0}/{1}",
-                    "https://localhost:7159/api/Category", id), content);
-
-                if (response.IsSuccessStatusCode)
-                {
-
-                    MessageBox.Show("Categoria actualizada");
-                    GetAllCategories();
-                }
-                else
-                {
-                    MessageBox.Show($"Error al actualizar la categoria: {response.StatusCode}");
-                }
-            }
-        }
-
-        /// ///////////////////////////////////////////////////////////////////////////////////////////
-
-        private void btnEliminar_Click(object sender, EventArgs e)
-        {
-            if (rbProductos.Checked == true)
-            {
-                if (id != 0)
-                {
-                    DeleteProduct();
-                }
-            }
-            else if (rbEmpleados.Checked == true)
-            {
-                if (id != 0)
-                {
-                    DeleteEmpleado();
-                }
-            }
-            else if (rbCategory.Checked == true)
-            {
-                if (id != 0)
-                {
-                    DeleteCategory();
-                }
-            }
-
-        }
-
-        private async void DeleteCategory()
-        {
-            using (var client = new HttpClient())
-            {
-                client.BaseAddress = new Uri("https://localhost:7159/api/Category");
-                var response = await client.DeleteAsync(String.Format("{0}/{1}",
-                    "https://localhost:7159/api/Category", id));
-                if (response.IsSuccessStatusCode)
-                    MessageBox.Show("Categoria eliminada con éxito");
-                else
-                    MessageBox.Show($"No se pudo eliminar la categoria: {response.StatusCode}");
-            }
-            Clear();
-            GetAllCategories();
-        }
-
-        private async void DeleteEmpleado()
-        {
-            using (var client = new HttpClient())
-            {
-                client.BaseAddress = new Uri("https://localhost:7159/api/Users");
-                var response = await client.DeleteAsync(String.Format("{0}/{1}",
-                    "https://localhost:7159/api/Users", id));
-                if (response.IsSuccessStatusCode)
-                    MessageBox.Show("Empleado eliminado con éxito");
-                else
-                    MessageBox.Show($"No se pudo eliminar el empleado: {response.StatusCode}");
-            }
-            Clear();
-            GetAllUsers();
-        }
-
-        private async void DeleteProduct()
-        {
-            using (var client = new HttpClient())
-            {
-                client.BaseAddress = new Uri("http://localhost:5226/api/Products");
-                var response = await client.DeleteAsync(String.Format("{0}/{1}",
-                    "http://localhost:5226/api/Products", id));
-                if (response.IsSuccessStatusCode)
-                    MessageBox.Show("Producto eliminado con éxito");
-                else
-                    MessageBox.Show($"No se pudo eliminar el producto: {response.StatusCode}");
-            }
-            Clear();
-            GetAllProducts();
-        }
-
+        /// ///////////////////////////////OBTIENE POR ID//////////////////////////////////////////////////
         private void btnLimpiar_Click(object sender, EventArgs e)
         {
             Clear();
         }
+
+        private void pictureBox7_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Login log = new Login();
+            log.ShowDialog();
+        }
+
+        /// ///////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
 
     }
 }

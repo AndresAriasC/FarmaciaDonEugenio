@@ -30,6 +30,7 @@ namespace ProyectoFarmacia.FormsAdd
             userCreateDtofarm.Adress = txtEmpAdress.Text;
             userCreateDtofarm.Salary = Convert.ToDouble(txtEmpSalary.Text);
 
+
             using (var client = new HttpClient())
             {
                 var serializedStudent = JsonConvert.SerializeObject(userCreateDtofarm);
@@ -46,6 +47,13 @@ namespace ProyectoFarmacia.FormsAdd
                 }
 
             }
+
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

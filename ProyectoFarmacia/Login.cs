@@ -30,12 +30,13 @@ namespace ProyectoFarmacia
             Application.Exit();
         }
 
-        SqlConnection conexion = new SqlConnection("Server=OWEN_LAPTOP;Database=DBFarmaciaDonEugenio;Trusted_Connection=True;TrustServerCertificate=True;MultipleActiveResultSets=True;");
+        SqlConnection conexion = new SqlConnection("Server=LAPTOP-7TMN5ABO;Database=DBFarmaciaDonEugenio;Trusted_Connection=True;TrustServerCertificate=True;MultipleActiveResultSets=True;");
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
             try
             {
+
                 conexion.Open();
                 string consulta = "select * from Users where EmployeeCode = '" + campoCode.Text + "' and UserName='" + campoName.Text + "'";
                 SqlCommand comando = new SqlCommand(consulta, conexion);
@@ -65,7 +66,6 @@ namespace ProyectoFarmacia
                 conexion.Close();
             }
         }
-
     }
 
 

@@ -33,8 +33,8 @@
             label3 = new Label();
             label2 = new Label();
             panel2 = new Panel();
+            campoCode = new TextBox();
             btnSalir = new Button();
-            campoCode = new RichTextBox();
             campoName = new RichTextBox();
             btnLogin = new Button();
             panel2.SuspendLayout();
@@ -46,9 +46,9 @@
             label1.BackColor = Color.Transparent;
             label1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             label1.ForeColor = SystemColors.WindowFrame;
-            label1.Location = new Point(33, 152);
+            label1.Location = new Point(38, 203);
             label1.Name = "label1";
-            label1.Size = new Size(53, 21);
+            label1.Size = new Size(65, 28);
             label1.TabIndex = 2;
             label1.Text = "CODE";
             // 
@@ -57,9 +57,9 @@
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 7.8F, FontStyle.Regular, GraphicsUnit.Point);
             label3.ForeColor = Color.DeepSkyBlue;
-            label3.Location = new Point(216, 243);
+            label3.Location = new Point(247, 324);
             label3.Name = "label3";
-            label3.Size = new Size(121, 13);
+            label3.Size = new Size(137, 17);
             label3.TabIndex = 4;
             label3.Text = "Olvidó su contraseña?";
             // 
@@ -69,9 +69,9 @@
             label2.BackColor = Color.Transparent;
             label2.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             label2.ForeColor = SystemColors.WindowFrame;
-            label2.Location = new Point(33, 92);
+            label2.Location = new Point(38, 123);
             label2.Name = "label2";
-            label2.Size = new Size(58, 21);
+            label2.Size = new Size(72, 28);
             label2.TabIndex = 5;
             label2.Text = "NAME";
             label2.TextAlign = ContentAlignment.TopCenter;
@@ -81,18 +81,26 @@
             panel2.BackColor = Color.Transparent;
             panel2.BackgroundImage = (Image)resources.GetObject("panel2.BackgroundImage");
             panel2.BackgroundImageLayout = ImageLayout.Zoom;
-            panel2.Controls.Add(btnSalir);
             panel2.Controls.Add(campoCode);
+            panel2.Controls.Add(btnSalir);
             panel2.Controls.Add(campoName);
             panel2.Controls.Add(btnLogin);
             panel2.Controls.Add(label2);
             panel2.Controls.Add(label3);
             panel2.Controls.Add(label1);
-            panel2.Location = new Point(-2, 2);
-            panel2.Margin = new Padding(3, 2, 3, 2);
+            panel2.Location = new Point(-2, 3);
             panel2.Name = "panel2";
-            panel2.Size = new Size(524, 296);
+            panel2.Size = new Size(599, 392);
             panel2.TabIndex = 8;
+            // 
+            // campoCode
+            // 
+            campoCode.Location = new Point(142, 188);
+            campoCode.Multiline = true;
+            campoCode.Name = "campoCode";
+            campoCode.PasswordChar = '*';
+            campoCode.Size = new Size(387, 43);
+            campoCode.TabIndex = 11;
             // 
             // btnSalir
             // 
@@ -100,36 +108,22 @@
             btnSalir.FlatStyle = FlatStyle.Popup;
             btnSalir.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             btnSalir.ForeColor = Color.White;
-            btnSalir.Location = new Point(455, 10);
-            btnSalir.Margin = new Padding(3, 2, 3, 2);
+            btnSalir.Location = new Point(520, 13);
             btnSalir.Name = "btnSalir";
-            btnSalir.Size = new Size(55, 36);
+            btnSalir.Size = new Size(63, 48);
             btnSalir.TabIndex = 9;
             btnSalir.Text = "X";
             btnSalir.UseVisualStyleBackColor = false;
             btnSalir.Click += btnSalir_Click;
-            // 
-            // campoCode
-            // 
-            campoCode.BackColor = Color.WhiteSmoke;
-            campoCode.BorderStyle = BorderStyle.None;
-            campoCode.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            campoCode.Location = new Point(124, 149);
-            campoCode.Margin = new Padding(3, 2, 3, 2);
-            campoCode.Name = "campoCode";
-            campoCode.Size = new Size(339, 32);
-            campoCode.TabIndex = 10;
-            campoCode.Text = "";
             // 
             // campoName
             // 
             campoName.BackColor = Color.WhiteSmoke;
             campoName.BorderStyle = BorderStyle.None;
             campoName.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            campoName.Location = new Point(124, 88);
-            campoName.Margin = new Padding(3, 2, 3, 2);
+            campoName.Location = new Point(142, 117);
             campoName.Name = "campoName";
-            campoName.Size = new Size(339, 31);
+            campoName.Size = new Size(387, 41);
             campoName.TabIndex = 9;
             campoName.Text = "";
             // 
@@ -140,10 +134,9 @@
             btnLogin.FlatStyle = FlatStyle.Popup;
             btnLogin.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             btnLogin.ForeColor = Color.White;
-            btnLogin.Location = new Point(172, 196);
-            btnLogin.Margin = new Padding(3, 2, 3, 2);
+            btnLogin.Location = new Point(197, 261);
             btnLogin.Name = "btnLogin";
-            btnLogin.Size = new Size(211, 36);
+            btnLogin.Size = new Size(241, 48);
             btnLogin.TabIndex = 6;
             btnLogin.Text = "LOGIN";
             btnLogin.UseVisualStyleBackColor = false;
@@ -151,14 +144,13 @@
             // 
             // Login
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.ForestGreen;
             BackgroundImageLayout = ImageLayout.Zoom;
-            ClientSize = new Size(522, 298);
+            ClientSize = new Size(597, 397);
             Controls.Add(panel2);
             FormBorderStyle = FormBorderStyle.None;
-            Margin = new Padding(3, 2, 3, 2);
             Name = "Login";
             StartPosition = FormStartPosition.CenterScreen;
             Text = " ";
@@ -175,7 +167,7 @@
         private Panel panel2;
         private Button btnLogin;
         private Button btnSalir;
-        private RichTextBox campoCode;
         private RichTextBox campoName;
+        private TextBox campoCode;
     }
 }
